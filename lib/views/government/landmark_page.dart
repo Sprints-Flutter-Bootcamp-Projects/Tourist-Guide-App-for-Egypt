@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/views/government/government_page.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
 
 
@@ -36,7 +35,6 @@ class LandmarkPage extends StatelessWidget {
                 itemCount: landmarks.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.teal[100]!),
                       borderRadius: BorderRadius.circular(8),
