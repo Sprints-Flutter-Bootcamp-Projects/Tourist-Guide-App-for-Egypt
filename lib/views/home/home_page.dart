@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/views/favourites_page.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
@@ -40,10 +41,11 @@ class _HomePageState extends State<HomePage> {
                   itemCount: 4,
                   itemBuilder: (context, index) {
                     return gridItem(
-                        context,
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                        "Product ${index + 1}",
-                        "subhead");
+                      context,
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
+                      "Product ${index + 1}",
+                      "subhead",
+                    );
                   },
                 ),
               ),

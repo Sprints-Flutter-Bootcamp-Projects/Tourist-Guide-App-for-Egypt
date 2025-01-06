@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/nav_bar.dart';
+import 'package:tourist_guide/views/favourites_page.dart';
 
 Widget gridItem(
     BuildContext context, String imgURL, String title, String subhead) {
@@ -49,20 +51,33 @@ Widget gridItem(
               ),
             ),
           ),
-          ListTile(
-            title: Text(
-              "$title",
-            ),
-            subtitle: Text("$subhead"),
-            trailing: IconButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Added to Favorites")),
-                );
-              },
-              icon: const Icon(
-                Icons.favorite_border,
-                color: Colors.teal,
+          Expanded(
+            child: ListTile(
+              title: Text(
+                "$title",
+                style: TextStyle(fontSize: 10),
+              ),
+              subtitle: Text(
+                "$subhead",
+                style: TextStyle(fontSize: 10),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  if (isLoggedIn) {
+                    favList.add(gridItem(context, imgURL, title, subhead));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Added to Favorites")),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("You Must Login First")),
+                    );
+                  }
+                },
+                icon: const Icon(
+                  Icons.favorite_border,
+                  color: Colors.teal,
+                ),
               ),
             ),
           ),
