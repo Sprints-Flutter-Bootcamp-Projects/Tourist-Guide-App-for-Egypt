@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/nav_bar.dart';
-import 'package:tourist_guide/views/favourites_page.dart';
+import 'package:tourist_guide/views/government/favourites_page.dart';
 
 Widget gridItem(
     BuildContext context, String imgURL, String title, String subhead) {

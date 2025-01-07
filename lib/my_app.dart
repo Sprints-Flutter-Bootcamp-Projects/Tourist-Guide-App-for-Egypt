@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/nav_bar.dart';
-import 'package:tourist_guide/views/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

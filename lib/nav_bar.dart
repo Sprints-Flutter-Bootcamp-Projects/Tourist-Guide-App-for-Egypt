@@ -1,11 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/views/favourites_page.dart';
+import 'package:tourist_guide/views/government/favourites_page.dart';
 import 'package:tourist_guide/views/government/government_page.dart';
 import 'package:tourist_guide/views/home/home_page.dart';
-import 'package:tourist_guide/views/profile.dart';
-
-import 'views/authentication/login_page.dart';
+import 'package:tourist_guide/views/profile/profile.dart';
 
 class MyNavigationBar extends StatefulWidget {
   // MyNavigationBar({required Key key}) : super(key: key);/
@@ -15,9 +12,9 @@ class MyNavigationBar extends StatefulWidget {
 }
 
 bool isLoggedIn = false;
+int selectedPage = 0;
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
-  int _selectedIndex = 0;
   final PageController pageController = PageController();
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(title: "Home Page"),
@@ -28,7 +25,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedPage = index;
     });
     pageController.jumpToPage(index);
   }
@@ -41,7 +38,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           controller: pageController,
           onPageChanged: (index) {
             setState(() {
-              _selectedIndex = index;
+              selectedPage = index;
             });
           }),
       //bottom nav bar from material package
@@ -50,7 +47,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       bottomNavigationBar: NavigationBar(
           backgroundColor: Colors.brown[50],
           indicatorColor: Colors.teal[100],
-          selectedIndex: _selectedIndex,
+          selectedIndex: selectedPage,
           onDestinationSelected: _onItemTapped,
           destinations: const [
             NavigationDestination(
@@ -75,33 +72,6 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             ),
           ],
           elevation: 3),
-      drawer: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        color: Colors.teal.shade50,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            isLoggedIn
-                ? ListTile(
-                    title: Text(tr('sign_out')),
-                    trailing: Icon(Icons.logout),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage())),
-                  )
-                : ListTile(
-                    title: Text(tr('sign_in')),
-                    trailing: Icon(Icons.login),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
-                    ),
-                  ),
-          ],
-        ),
-      ),
     );
   }
 }
