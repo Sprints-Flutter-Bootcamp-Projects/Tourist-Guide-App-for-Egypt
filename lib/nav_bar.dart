@@ -5,9 +5,12 @@ import 'package:tourist_guide/views/home/home_page.dart';
 import 'package:tourist_guide/views/profile/profile.dart';
 
 class MyNavigationBar extends StatefulWidget {
+  const MyNavigationBar({super.key});
+
   // MyNavigationBar({required Key key}) : super(key: key);/
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyNavigationBarState createState() => _MyNavigationBarState();
 }
 
@@ -34,13 +37,13 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-          children: _widgetOptions,
           controller: pageController,
           onPageChanged: (index) {
             setState(() {
               selectedPage = index;
             });
-          }),
+          },
+          children: _widgetOptions),
       //bottom nav bar from material package
       // https://api.flutter.dev/flutter/material/NavigationBar-class.html
 

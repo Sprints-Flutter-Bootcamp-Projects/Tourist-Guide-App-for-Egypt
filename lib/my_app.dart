@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: MyNavigationBar(),
+      home: const MyNavigationBar(),
     );
   }
 }

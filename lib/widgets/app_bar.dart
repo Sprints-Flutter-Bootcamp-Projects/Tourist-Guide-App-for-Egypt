@@ -6,6 +6,7 @@ import 'package:tourist_guide/widgets/lang_dialog.dart';
 import '../views/authentication/login_page.dart';
 import '../views/profile/edit_profile.dart';
 
+// ignore: non_constant_identifier_names
 PreferredSizeWidget? PagesAppBar(BuildContext context, String AppBarTitle) {
   return AppBar(
     iconTheme: IconThemeData(color: Colors.teal[900]),
@@ -19,7 +20,7 @@ PreferredSizeWidget? PagesAppBar(BuildContext context, String AppBarTitle) {
     ),
     actions: <Widget>[
       IconButton(
-        icon: Icon(Icons.language),
+        icon: const Icon(Icons.language),
         onPressed: () => langDialog(context),
       ),
     ],
@@ -31,7 +32,7 @@ PreferredSizeWidget? PagesAppBar(BuildContext context, String AppBarTitle) {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+                    builder: (context) => const LoginPage(),
                   ),
                 ),
               ),

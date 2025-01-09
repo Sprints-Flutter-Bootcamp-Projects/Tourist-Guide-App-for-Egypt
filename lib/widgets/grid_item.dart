@@ -4,7 +4,7 @@ import 'package:tourist_guide/views/government/favourites_page.dart';
 
 Widget gridItem(
     BuildContext context, String imgURL, String title, String subhead) {
-  return Container(
+  return SizedBox(
     height: 200,
     width: 200,
     child: Card(
@@ -54,12 +54,12 @@ Widget gridItem(
           Expanded(
             child: ListTile(
               title: Text(
-                "$title",
-                style: TextStyle(fontSize: 10),
+                title,
+                style: const TextStyle(fontSize: 10),
               ),
               subtitle: Text(
-                "$subhead",
-                style: TextStyle(fontSize: 10),
+                subhead,
+                style: const TextStyle(fontSize: 10),
               ),
               trailing: IconButton(
                 onPressed: () {

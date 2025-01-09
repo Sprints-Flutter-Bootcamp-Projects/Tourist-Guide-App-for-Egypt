@@ -12,14 +12,14 @@ void langDialog(context) {
             children: <Widget>[
               TextButton(
                 onPressed: () {
-                  context.setLocale(Locale('ar'));
+                  context.setLocale(const Locale('ar'));
                   Navigator.pop(context);
                 },
                 child: const Text("Arabic"),
               ),
               TextButton(
                 onPressed: () {
-                  context.setLocale(Locale('en'));
+                  context.setLocale(const Locale('en'));
                   Navigator.pop(context);
                 },
                 child: const Text("English"),

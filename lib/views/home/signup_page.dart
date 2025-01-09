@@ -135,11 +135,13 @@ class _SignupPageState extends State<SignupPage> {
                               setState(() {
                                 _isLoading = false;
                               });
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Signup Successful')),
                               );
                               Navigator.push(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const LoginPage()),

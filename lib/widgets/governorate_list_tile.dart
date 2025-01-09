@@ -18,9 +18,9 @@ class GovernorateListTile extends StatelessWidget {
         leading: IconButton.filledTonal(
           style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.teal[100])),
             color: Colors.teal[900],
-            onPressed: (){}, icon: Icon(Icons.pin_drop)),
+            onPressed: (){}, icon: const Icon(Icons.pin_drop)),
         title: Text(goverorateName!, style: TextStyle(color: Colors.teal[900])),
-        trailing: Icon(Icons.chevron_right),
+        trailing: const Icon(Icons.chevron_right),
         onTap: onTap
     );
   }
