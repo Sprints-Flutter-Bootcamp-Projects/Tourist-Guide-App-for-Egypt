@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/nav_bar.dart';
+// import 'package:tourist_guide/nav_bar.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
+// import 'package:tourist_guide/views/authentication.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -15,17 +16,23 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PagesAppBar(context, context.tr("profile")),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Icon(
-            Icons.person_2_outlined,
-            size: 200,
+            Icons.person_rounded,
+            size: 150,
+            color: Colors.green,
           ),
-          Text(
-            isLoggedIn ? "User Name" : 'Logged in as a Guest',
-            textAlign: TextAlign.center,
-          )
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Full Name",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+
+          ),
         ],
       ),
     );
