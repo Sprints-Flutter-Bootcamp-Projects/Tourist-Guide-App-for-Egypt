@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:signup_page/my_textformfield.dart';
+import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
