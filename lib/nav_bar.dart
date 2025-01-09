@@ -20,7 +20,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     HomePage(title: "Home Page"),
     GovernmentPage(),
     FavouritesPage(),
-    Profile(),
+    Profile(name: 'user name',email: 'user@example.com', password: 'hashedpass',),
   ];
 
   void _onItemTapped(int index) {
