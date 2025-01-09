@@ -34,16 +34,17 @@ class _HomePageState extends State<HomePage> {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 4,
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
                     return gridItem(
-                        context,
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                        "Product ${index + 1}",
-                        "subhead");
+                      context,
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
+                      "Product ${index + 1}",
+                      "subhead",
+                    );
                   },
                 ),
               ),
