@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/data/home_data.dart';
 import 'package:tourist_guide/widgets/lang_dialog.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
+import '../../helpers/shared_pref.dart';
 import '../../widgets/grid_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,14 +47,9 @@ class _HomePageState extends State<HomePage> {
                   crossAxisSpacing: 4,
                   mainAxisSpacing: 4,
                 ),
-                itemCount: 4,
+                itemCount: gridItems.length,
                 itemBuilder: (context, index) {
-                  return GridItem(
-                    context,
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                    "Product ${index + 1}",
-                    "subhead",
-                  );
+                  return gridItems[index];
                 },
               ),
             ),
@@ -66,34 +63,14 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               flex: 3,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  GridItem(
-                    context,
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                    "Product 1",
-                    "subhead",
-                  ),
-                  GridItem(
-                    context,
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                    "Product 2",
-                    "subhead",
-                  ),
-                  GridItem(
-                    context,
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                    "Product 3",
-                    "subhead",
-                  ),
-                  GridItem(
-                    context,
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/435px-All_Gizah_Pyramids.jpg",
-                    "Product 4",
-                    "subhead",
-                  ),
-                ],
+                itemCount: gridItems.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [gridItems[index]],
+                  );
+                },
               ),
             ),
           ],

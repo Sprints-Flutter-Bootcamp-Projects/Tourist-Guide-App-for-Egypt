@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/nav_bar.dart';
 import 'package:tourist_guide/views/home/favourites_page.dart';
 
+import '../helpers/shared_pref.dart';
+
 class GridItem extends StatefulWidget {
-  GridItem(BuildContext context, this.imgURL, this.title, this.subhead,
+  GridItem(this.imgURL, this.title, this.subhead,
       {super.key, this.isFavourite = false});
   final String imgURL;
   final String title;
@@ -16,6 +18,9 @@ class GridItem extends StatefulWidget {
 class _GridItemState extends State<GridItem> {
   @override
   Widget build(BuildContext context) {
+    Future<Map<String, dynamic>?> userData =
+        SharedPreferencesHelper.getUserData();
+
     return SizedBox(
       height: 200,
       width: 200,
@@ -76,7 +81,7 @@ class _GridItemState extends State<GridItem> {
                           WidgetStateProperty.all(Colors.teal[100])),
                   color: Colors.teal[900],
                   onPressed: () {
-                    if (isLoggedIn) {
+                    if (userData != null) {
                       if (widget.isFavourite) {
                         setState(() {
                           widget.isFavourite = false;

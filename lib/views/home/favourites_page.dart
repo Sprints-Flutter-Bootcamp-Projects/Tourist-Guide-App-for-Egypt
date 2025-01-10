@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/data/home_data.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
+import 'package:tourist_guide/widgets/grid_item.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
 class FavouritesPage extends StatefulWidget {
@@ -12,15 +14,26 @@ class FavouritesPage extends StatefulWidget {
 
 List<Widget> favList = [];
 
+// void checkFav() {
+//   favList = [];
+//   for (var item in gridItems) {
+//     if (item.isFavourite == true) {
+//       favList.add(item);
+//       print("favList = ${favList.isEmpty}");
+//     }
+//   }
+// }
+
 class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
+    // checkFav();
     return Scaffold(
       appBar: PagesAppBar(context, context.tr("favorites")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextTitle(
               context.tr("favorites_places"),
@@ -29,13 +42,15 @@ class _FavouritesPageState extends State<FavouritesPage> {
             favList.isEmpty
                 ? Expanded(
                     child: Center(
-                        child: Text(
-                    'Starting adding your favourite Places',
-                    style: TextStyle(
-                        color: Colors.teal[800],
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  )))
+                      child: Text(
+                        'Starting adding your favourite Places',
+                        style: TextStyle(
+                            color: Colors.teal[800],
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
                 : Expanded(
                     child: GridView.builder(
                       gridDelegate:
