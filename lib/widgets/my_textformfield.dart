@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class MyTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String label;
+  final IconData labelIcon;
   final String? Function(String?)? validator;
   final bool isPassword;
   bool obsecureText;
@@ -11,6 +12,7 @@ class MyTextFormField extends StatefulWidget {
       {super.key,
       required this.controller,
       required this.label,
+      required this.labelIcon,
       this.obsecureText = false,
       this.validator,
       this.isPassword = false});
@@ -32,9 +34,11 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      decoration: InputDecoration(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        controller: widget.controller,
+        decoration: InputDecoration(
           suffixIcon: widget.isPassword
               ? InkWell(
                   child: Icon(suffixIcon),
@@ -44,14 +48,28 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
           labelText: widget.label,
           hintText: 'Enter your ${widget.label.toLowerCase()}',
           focusColor: const Color(0xFF004D40),
-          border: const OutlineInputBorder(),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Colors.grey),
+          prefixIcon: Icon(
+            widget.labelIcon,
+            color: Colors.teal,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(width: 1, color: Colors.grey),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(width: 1, color: Colors.grey),
           ),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: Color(0xFF004D40)))),
-      obscureText: widget.obsecureText,
-      validator: widget.validator,
+            borderSide: BorderSide(
+              width: 2,
+              color: Color(0xFF004D40),
+            ),
+          ),
+        ),
+        obscureText: widget.obsecureText,
+        validator: widget.validator,
+      ),
     );
   }
 }

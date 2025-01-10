@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
+import '../../helpers/shared_pref.dart';
+
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -70,6 +72,7 @@ class _SignupPageState extends State<SignupPage> {
               MyTextFormField(
                   controller: nameController,
                   label: 'Full Name',
+                  labelIcon: Icons.person_outlined,
                   obsecureText: false,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
@@ -79,12 +82,10 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   }),
-              const SizedBox(
-                height: 16,
-              ),
               MyTextFormField(
                   controller: emailController,
                   label: 'Email',
+                  labelIcon: Icons.email_outlined,
                   obsecureText: false,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
@@ -94,12 +95,10 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   }),
-              const SizedBox(
-                height: 16,
-              ),
               MyTextFormField(
                   controller: phoneController,
                   label: 'Phone Number ',
+                  labelIcon: Icons.phone_outlined,
                   obsecureText: false,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
@@ -109,12 +108,10 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   }),
-              const SizedBox(
-                height: 16,
-              ),
               MyTextFormField(
                   controller: passwordController,
                   label: 'Password',
+                  labelIcon: Icons.lock_outlined,
                   obsecureText: true,
                   isPassword: true,
                   validator: (String? value) {
@@ -129,40 +126,40 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   }),
-              const SizedBox(
-                height: 16,
-              ),
               SizedBox(
                 width: double.infinity,
                 child: _isLoading
                     ? const CircularProgressIndicator()
                     : OutlinedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
                               _isLoading = true;
                             });
-                            // Simulate signup process
-                            Future.delayed(const Duration(seconds: 2), () {
-                              setState(() {
-                                _isLoading = false;
-                              });
-                              // ignore: use_build_context_synchronously
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Signup Successful')),
-                              );
-                              print('Name: ${nameController.text}');
-                              print('Email: ${emailController.text}');
-                              print('Phone: ${phoneController.text}');
-                              print('Password: ${passwordController.text}');
-                              Navigator.push(
-                                // ignore: use_build_context_synchronously
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()),
-                              );
-                            });
+                            // Construct user data map
+                            Map<String, dynamic> userData = {
+                              'name': nameController.text,
+                              'email': emailController.text,
+                              'phone': phoneController.text,
+                              'password': passwordController.text,
+                            };
+
+                            await SharedPreferencesHelper.saveUserData(
+                                userData);
+
+                            // Show success message
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Signup Successful')),
+                            );
+
+                            // Debug prints
+                            print(userData);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
                           }
                         },
                         style: OutlinedButton.styleFrom(
