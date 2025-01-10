@@ -66,7 +66,7 @@ class GovernmentListPage extends StatelessWidget {
                 itemCount: govData.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GovernorateListTile(
-                    goverorateName: govData[index]['governorate'],
+                    goverorateName: tr(govData[index]['governorate']),
                     onTap: () {
                       Navigator.pushNamed(context, '/landmark', arguments: {
                         'governorateName': govData[index]['governorate'],
