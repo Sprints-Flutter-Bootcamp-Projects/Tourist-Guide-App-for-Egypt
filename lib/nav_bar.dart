@@ -71,7 +71,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             NavigationDestination(
               icon: const Icon(Icons.favorite_outline),
               selectedIcon: const Icon(Icons.favorite),
-              label: context.tr('favourites'),
+              label: context.tr('favorites'),
             ),
             NavigationDestination(
               icon: const Icon(Icons.person_outline),

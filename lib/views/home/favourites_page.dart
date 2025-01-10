@@ -16,14 +16,14 @@ class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("favourites")),
+      appBar: PagesAppBar(context, context.tr("favorites")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextTitle(
-              context.tr("favourite_places"),
+              context.tr("favorites_places"),
             ),
             const SizedBox(height: 8.0),
             favList.isEmpty
