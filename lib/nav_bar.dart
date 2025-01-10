@@ -61,22 +61,22 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             NavigationDestination(
               icon: const Icon(Icons.home_outlined),
               selectedIcon: const Icon(Icons.home),
-              label: tr('home_page'),
+              label: context.tr('home_page'),
             ),
             NavigationDestination(
               icon: const Icon(Icons.pin_drop_outlined),
               selectedIcon: const Icon(Icons.pin_drop),
-              label: tr('governorates'),
+              label: context.tr('governorates'),
             ),
             NavigationDestination(
               icon: const Icon(Icons.favorite_outline),
               selectedIcon: const Icon(Icons.favorite),
-              label: tr('favourites'),
+              label: context.tr('favourites'),
             ),
             NavigationDestination(
               icon: const Icon(Icons.person_outline),
               selectedIcon: const Icon(Icons.person),
-              label: tr('profile'),
+              label: context.tr('profile'),
             ),
           ],
           elevation: 3),

@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Column(
-              spacing: 15,
+              // spacing: 15,
               children: [
                 Image.asset('assets/images/logo.PNG'),
                 TextFormField(
