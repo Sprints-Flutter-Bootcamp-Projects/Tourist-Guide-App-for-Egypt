@@ -1,5 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
-
 List<Map<String, dynamic>> govData = [
   {
     "governorate": 'cairo',
