@@ -104,8 +104,9 @@ class _SignupPageState extends State<SignupPage> {
                 height: 16,
               ),
               MyTextFormField(
-                  label: 'password',
+                  label: 'Password',
                   obsecureText: true,
+                  isPassword: true,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';

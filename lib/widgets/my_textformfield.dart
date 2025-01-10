@@ -1,21 +1,45 @@
 import 'package:flutter/material.dart';
 
-class MyTextFormField extends StatelessWidget {
+class MyTextFormField extends StatefulWidget {
   final String label;
-  final bool obsecureText;
+  bool obsecureText;
   final String? Function(String?)? validator;
-  const MyTextFormField(
+  final bool isPassword;
+
+  MyTextFormField(
       {super.key,
       required this.label,
-      required this.obsecureText,
-      this.validator});
+      this.obsecureText = false,
+      this.validator,
+      this.isPassword = false});
+
+  @override
+  State<MyTextFormField> createState() => _MyTextFormFieldState();
+}
+
+class _MyTextFormFieldState extends State<MyTextFormField> {
+  IconData? suffixIcon = Icons.visibility_off_outlined;
+
+  void switchVisibility() {
+    widget.obsecureText = !widget.obsecureText;
+    suffixIcon = widget.obsecureText
+        ? Icons.visibility_off_outlined
+        : Icons.visibility_outlined;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: label,
-          hintText: 'Enter your ${label.toLowerCase()}',
+          suffixIcon: widget.isPassword
+              ? InkWell(
+                  child: Icon(suffixIcon),
+                  onTap: () => switchVisibility(),
+                )
+              : null,
+          labelText: widget.label,
+          hintText: 'Enter your ${widget.label.toLowerCase()}',
           focusColor: const Color(0xFF004D40),
           border: const OutlineInputBorder(),
           enabledBorder: const OutlineInputBorder(
@@ -23,8 +47,8 @@ class MyTextFormField extends StatelessWidget {
           ),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(width: 2, color: Color(0xFF004D40)))),
-      obscureText: obsecureText,
-      validator: validator,
+      obscureText: widget.obsecureText,
+      validator: widget.validator,
     );
   }
 }
