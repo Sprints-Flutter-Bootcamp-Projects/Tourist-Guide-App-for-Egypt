@@ -2,15 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
 
-// class Profile extends StatefulWidget {
-//   const Profile({
-//     super.key,
-//   });
-//   @override
-//   State<Profile> createState() => _ProfileState();
-// }
+import '../../helpers/shared_pref.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   final String name;
   final String email;
   final String password;
@@ -21,129 +15,148 @@ class Profile extends StatelessWidget {
     required this.email,
     required this.password,
   });
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  bool isUser = false;
+  Map<String, dynamic>? userData;
+  void checkUser() async {
+    userData = await SharedPreferencesHelper.getUserData();
+    if (userData != null) {
+      print('Profile User data: $userData');
+      isUser = true;
+    } else {
+      print("No user data found.");
+      isUser = false;
+    }
+    setState(() {});
+  }
+
+  String hashedPassword(String password) {
+    String hashed = '';
+    for (int i = 0; i < password.length; i++) {
+      hashed += "#";
+    }
+    return hashed;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PagesAppBar(context, context.tr("profile")),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Icon(
-              Icons.person_rounded,
-              size: 150,
-              color: Colors.teal[900],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    print("isUser: $isUser");
+    checkUser();
+    print("isUser: $isUser");
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Scaffold(
+        appBar: PagesAppBar(context, context.tr("profile")),
+        body: isUser
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
-                      context.tr("Name"),
-                      textAlign: TextAlign.center,
-                      style:
-                         const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 15,
+                    Center(
+                      child: Icon(
+                        Icons.person_rounded,
+                        size: 150,
+                        color: Colors.teal[900],
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                context.tr("name"),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                userData!['name'],
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                context.tr("email"),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                userData!['email'],
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                context.tr("password"),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                hashedPassword(userData!['password']),
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       // myDialog();
+                    //     },
+                    //     child: const Text("change password",
+                    //         style: TextStyle(color: Colors.black)))
                   ],
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      context.tr("Email"),
-                      textAlign: TextAlign.center,
-                      style:
-                        const  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      email,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      context.tr("Password"),
-                      textAlign: TextAlign.center,
-                      style:
-                         const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      hashedPassword(password),
-                      style: const TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // TextButton(
-          //     onPressed: () {
-          //       // myDialog();
-          //     },
-          //     child: const Text("change password",
-          //         style: TextStyle(color: Colors.black)))
-        ],
+              )
+            : const Center(
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  Text("No User Data Found"),
+                ],
+              )),
       ),
     );
   }
-
-  // Future<void> myDialog() async {
-  //   // dialog function
-  //   return showDialog<void>(
-  //     context: ,
-  //     builder: (BuildContext context) {
-  //       return const AlertDialog(
-  //         title:  Text('AlertDialog'),
-  //         content: Text("change password"),
-  //         actions: <Widget>[
-  //           TextField(
-  //             decoration: InputDecoration(labelText: "new password"),
-  //           ),
-  //           TextField(decoration: InputDecoration(labelText: "confirm password"),),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-}
-
-String hashedPassword(String password) {
-  String hashed = '';
-  for (int i = 0; i < password.length; i++) {
-    hashed += "#";
-  }
-  return hashed;
 }
