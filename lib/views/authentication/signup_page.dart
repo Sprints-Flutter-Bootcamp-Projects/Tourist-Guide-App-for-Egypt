@@ -12,11 +12,17 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  final RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-  final RegExp passwordRegExp = RegExp(
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  RegExp passwordRegExp = RegExp(
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$');
   final RegExp phoneRegExp = RegExp(r'^\+?1?\d{9,15}$');
   final RegExp nameRegExp = RegExp(r'^[a-zA-Z\s]+$');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +68,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: 32,
               ),
               MyTextFormField(
+                  controller: nameController,
                   label: 'Full Name',
                   obsecureText: false,
                   validator: (String? value) {
@@ -76,6 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: 16,
               ),
               MyTextFormField(
+                  controller: emailController,
                   label: 'Email',
                   obsecureText: false,
                   validator: (String? value) {
@@ -90,6 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: 16,
               ),
               MyTextFormField(
+                  controller: phoneController,
                   label: 'Phone Number ',
                   obsecureText: false,
                   validator: (String? value) {
@@ -104,6 +113,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: 16,
               ),
               MyTextFormField(
+                  controller: passwordController,
                   label: 'Password',
                   obsecureText: true,
                   isPassword: true,
@@ -142,6 +152,10 @@ class _SignupPageState extends State<SignupPage> {
                                 const SnackBar(
                                     content: Text('Signup Successful')),
                               );
+                              print('Name: ${nameController.text}');
+                              print('Email: ${emailController.text}');
+                              print('Phone: ${phoneController.text}');
+                              print('Password: ${passwordController.text}');
                               Navigator.push(
                                 // ignore: use_build_context_synchronously
                                 context,

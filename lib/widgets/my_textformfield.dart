@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatefulWidget {
+  final TextEditingController controller;
   final String label;
-  bool obsecureText;
   final String? Function(String?)? validator;
   final bool isPassword;
+  bool obsecureText;
 
   MyTextFormField(
       {super.key,
+      required this.controller,
       required this.label,
       this.obsecureText = false,
       this.validator,
@@ -31,6 +33,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       decoration: InputDecoration(
           suffixIcon: widget.isPassword
               ? InkWell(
