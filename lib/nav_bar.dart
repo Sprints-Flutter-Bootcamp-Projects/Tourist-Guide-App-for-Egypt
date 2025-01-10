@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/views/government/favourites_page.dart';
+import 'package:tourist_guide/views/home/favourites_page.dart';
 import 'package:tourist_guide/views/government/government_page.dart';
 import 'package:tourist_guide/views/home/home_page.dart';
 import 'package:tourist_guide/views/profile/profile.dart';
@@ -24,7 +24,11 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     HomePage(title: "Home Page"),
     GovernmentPage(),
     FavouritesPage(),
-    Profile(name: 'user name',email: 'user@example.com', password: 'hashedpass',),
+    Profile(
+      name: 'user name',
+      email: 'user@example.com',
+      password: 'hashedpass',
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -53,25 +57,25 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           indicatorColor: Colors.teal[100],
           selectedIndex: selectedPage,
           onDestinationSelected: _onItemTapped,
-          destinations:  [
+          destinations: [
             NavigationDestination(
               icon: const Icon(Icons.home_outlined),
               selectedIcon: const Icon(Icons.home),
               label: tr('home_page'),
             ),
             NavigationDestination(
-              icon:const Icon(Icons.pin_drop_outlined),
-              selectedIcon:const Icon(Icons.pin_drop),
+              icon: const Icon(Icons.pin_drop_outlined),
+              selectedIcon: const Icon(Icons.pin_drop),
               label: tr('governorates'),
             ),
             NavigationDestination(
-              icon:const Icon(Icons.favorite_outline),
-              selectedIcon:const Icon(Icons.favorite),
+              icon: const Icon(Icons.favorite_outline),
+              selectedIcon: const Icon(Icons.favorite),
               label: tr('favourites'),
             ),
             NavigationDestination(
-              icon:const Icon(Icons.person_outline),
-              selectedIcon:const Icon(Icons.person),
+              icon: const Icon(Icons.person_outline),
+              selectedIcon: const Icon(Icons.person),
               label: tr('profile'),
             ),
           ],

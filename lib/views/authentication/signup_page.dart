@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 class SignupPage extends StatefulWidget {
@@ -164,18 +165,6 @@ class _SignupPageState extends State<SignupPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
-      body: const Center(child: Text("Login Page")),
     );
   }
 }

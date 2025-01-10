@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/views/authentication/signup_page.dart';
 import '../../nav_bar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -88,13 +89,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 FilledButton(
+                  style: FilledButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6))),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       isLoggedIn = true;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyNavigationBar()));
+                      Navigator.pop(context);
                     } else {
                       const ScaffoldMessenger(
                           child: SnackBar(
@@ -103,8 +104,16 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Text(tr('log_in')),
                 ),
-                FilledButton.icon(
-                    onPressed: () {}, label: Text(tr('create_new_account'))),
+                FilledButton(
+                    style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6))),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignupPage(),
+                        )),
+                    child: Text(tr('create_new_account'))),
               ],
             ),
           ),
