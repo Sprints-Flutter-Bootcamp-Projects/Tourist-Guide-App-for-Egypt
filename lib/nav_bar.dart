@@ -3,6 +3,7 @@ import 'package:tourist_guide/views/government/favourites_page.dart';
 import 'package:tourist_guide/views/government/government_page.dart';
 import 'package:tourist_guide/views/home/home_page.dart';
 import 'package:tourist_guide/views/profile/profile.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});
@@ -52,26 +53,26 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           indicatorColor: Colors.teal[100],
           selectedIndex: selectedPage,
           onDestinationSelected: _onItemTapped,
-          destinations: const [
+          destinations:  [
             NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home),
+              label: tr('home_page'),
             ),
             NavigationDestination(
-              icon: Icon(Icons.pin_drop_outlined),
-              selectedIcon: Icon(Icons.pin_drop),
-              label: 'Government',
+              icon:const Icon(Icons.pin_drop_outlined),
+              selectedIcon:const Icon(Icons.pin_drop),
+              label: tr('governorates'),
             ),
             NavigationDestination(
-              icon: Icon(Icons.favorite_outline),
-              selectedIcon: Icon(Icons.favorite),
-              label: 'Favorites',
+              icon:const Icon(Icons.favorite_outline),
+              selectedIcon:const Icon(Icons.favorite),
+              label: tr('favourites'),
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_outline),
-              selectedIcon: Icon(Icons.person),
-              label: 'Profile',
+              icon:const Icon(Icons.person_outline),
+              selectedIcon:const Icon(Icons.person),
+              label: tr('profile'),
             ),
           ],
           elevation: 3),
