@@ -45,15 +45,15 @@ class LandmarkPage extends StatelessWidget {
                       child: Column(
                         children: [
                           ListTile(
-                            title: Text(landmarks[index]['name'],
+                            title: Text(tr(landmarks[index]['name']),
                                 style: TextStyle(
                                     color: Colors.teal[900],
                                     fontWeight: FontWeight.bold)),
-                            subtitle: Text(landmarks[index]['location']),
+                            subtitle: Text(tr(landmarks[index]['location'])),
                           ),
                           Image.network(landmarks[index]['image']),
                           ListTile(
-                            subtitle: Text(landmarks[index]['description']),
+                            subtitle: Text(tr(landmarks[index]['description'])),
                           ),
                         ],
                       ),
