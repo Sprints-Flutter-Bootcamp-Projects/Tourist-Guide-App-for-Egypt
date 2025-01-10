@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: SizedBox(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
