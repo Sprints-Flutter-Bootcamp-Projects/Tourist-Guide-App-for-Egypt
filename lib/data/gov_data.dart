@@ -28,7 +28,7 @@ List<Map<String, dynamic>> govData = [
         "description": 'bibliotheca_alexandrina_description',
         "image":
             "https://www.cascadianabroad.com/wp-content/uploads/2016/11/featured-image.jpg",
-        "location": tr('bibliotheca_alexandrina_location'),
+        "location": 'bibliotheca_alexandrina_location',
       },
       {
         "name": 'qaitbey_fortress',
