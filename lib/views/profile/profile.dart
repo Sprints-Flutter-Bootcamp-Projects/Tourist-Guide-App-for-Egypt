@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
 
 import '../../helpers/shared_pref.dart';
@@ -165,7 +166,23 @@ class _ProfileState extends State<Profile> {
                       color: Colors.teal[900],
                     ),
                   ),
-                  Text("No User Data Found"),
+                  Text("Login to see your profile"),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  FilledButton(
+                    style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6))),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        )),
+                    child: Text(
+                      tr('log_in'),
+                    ),
+                  ),
                 ],
               )),
       ),

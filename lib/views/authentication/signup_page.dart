@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
@@ -55,9 +57,13 @@ class _SignupPageState extends State<SignupPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(child: Image.asset("assets/images/logo.PNG")),
+              Center(
+                //
+                child: Icon(Icons.map_outlined,
+                    size: 120, color: Colors.teal[900]),
+              ),
               const SizedBox(
-                height: 16,
+                height: 12,
               ),
               const Text(
                 "Tourist Guide",
@@ -67,7 +73,7 @@ class _SignupPageState extends State<SignupPage> {
                     color: Color(0xFF004D40)),
               ),
               const SizedBox(
-                height: 32,
+                height: 24,
               ),
               MyTextFormField(
                   controller: nameController,
@@ -172,6 +178,16 @@ class _SignupPageState extends State<SignupPage> {
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    )),
+                child: Text(
+                  context.tr('have_an_account'),
+                ),
               ),
             ],
           ),

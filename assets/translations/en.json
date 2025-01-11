@@ -4,7 +4,8 @@
     "log_in": "Log in",
     "sign_out": "Sign out",
     "log_out": "Log out",
-    "create_new_account": "Create new Account",
+    "create_new_account": "New? Sign up here",
+    "have_an_account": "Already have an account? Log in here",
     "name": "Name",    
     "email": "Email",
     "password": "Password",
@@ -19,24 +20,31 @@
     "favorites": "Favorites",
     "profile": "Profile",
     "favorites_places": "Favorite Places",
+
     "cairo": "Cairo",
     "alexandria": "Alexandria",
     "al_fayoum": "Al-Fayoum",
+
     "cairo_tower": "Cairo Tower",
     "cairo_tower_description": "A free-standing concrete tower in Cairo, Egypt.",
     "cairo_tower_location": "Tahrir Square, Cairo, Egypt",
+
     "egyptian_museum": "The Egyptian Museum",
     "egyptian_museum_description": "One of the largest and most famous museums in the world.",
     "egyptian_museum_location": "Tahrir Square, Cairo, Egypt",
+
     "bibliotheca_alexandria": "Bibliotheca Alexandria",
     "bibliotheca_alexandria_description": "A major library and cultural center located on the shore of the Mediterranean Sea.",
     "bibliotheca_alexandria_location": "El Shatby, Alexandria, Egypt",
+
     "qaitbey_fortress": "The Qaitbey Fortress",
     "qaitbey_fortress_description": "A 15th-century defensive fortress located on the Mediterranean sea coast.",
     "qaitbey_fortress_location": "Alexandria, Egypt",
+
     "wadi_el_rayan": "Wadi El Rayan",
     "wadi_el_rayan_description": "A unique nature protectorate in the Western Desert of Egypt.",
     "wadi_el_rayan_location": "Faiyum Governorate, Egypt",
+
     "lake_qaron": "Lake Qaron",
     "lake_qaron_description": "One of the largest natural lakes in Egypt.",
     "lake_qaron_location": "Faiyum Governorate, Egypt"

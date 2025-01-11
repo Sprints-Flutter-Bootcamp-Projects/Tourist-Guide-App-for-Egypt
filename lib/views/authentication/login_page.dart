@@ -35,7 +35,24 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             // spacing: 15,
             children: [
-              Image.asset('assets/images/logo.PNG'),
+              Center(
+                //
+                child: Icon(Icons.map_outlined,
+                    size: 120, color: Colors.teal[900]),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              const Text(
+                "Tourist Guide",
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF004D40)),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               MyTextFormField(
                 controller: emailController,
                 label: context.tr('email'),
@@ -164,16 +181,29 @@ class _LoginPageState extends State<LoginPage> {
                   context.tr('log_in'),
                 ),
               ),
-              FilledButton(
-                  style: FilledButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6))),
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignupPage(),
-                      )),
-                  child: Text(tr('create_new_account'))),
+              TextButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignupPage(),
+                    )),
+                child: Text(
+                  tr('create_new_account'),
+                ),
+              ),
+              // FilledButton(
+              //   style: FilledButton.styleFrom(
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(6))),
+              //   onPressed: () => Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => const SignupPage(),
+              //       )),
+              //   child: Text(
+              //     tr('create_new_account'),
+              //   ),
+              // ),
             ],
           ),
         ),
