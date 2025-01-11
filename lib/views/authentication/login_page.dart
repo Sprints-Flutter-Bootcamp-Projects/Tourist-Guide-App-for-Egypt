@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               // ),
               MyTextFormField(
                   controller: passwordController,
-                  label: 'Password',
+                  label: context.tr("password"),
                   labelIcon: Icons.lock_outlined,
                   obsecureText: true,
                   isPassword: true,
@@ -171,6 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SnackBar(content: Text('Please enter valid data')),
                     );
                   }
+                  Navigator.pop(context);
                 },
                 child: Text(
                   context.tr('log_in'),

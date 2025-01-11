@@ -5,9 +5,7 @@ import 'package:tourist_guide/widgets/lang_dialog.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

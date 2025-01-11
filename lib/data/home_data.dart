@@ -9,7 +9,7 @@ List<GridItem> gridItems = [
   ),
   GridItem(
     "https://www.cascadianabroad.com/wp-content/uploads/2016/11/featured-image.jpg",
-    "bibliotheca_alexandrina",
+    "bibliotheca_alexandria",
     "alexandria",
     isFavourite: false,
   ),

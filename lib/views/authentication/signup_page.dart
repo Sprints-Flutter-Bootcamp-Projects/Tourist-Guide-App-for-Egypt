@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
+import 'package:tourist_guide/views/profile/profile.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 import '../../helpers/shared_pref.dart';
@@ -60,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               MyTextFormField(
                   controller: nameController,
-                  label: 'Full Name',
+                  label: context.tr("full_name"),
                   labelIcon: Icons.person_outlined,
                   obsecureText: false,
                   validator: (String? value) {
@@ -73,7 +74,7 @@ class _SignupPageState extends State<SignupPage> {
                   }),
               MyTextFormField(
                   controller: emailController,
-                  label: 'Email',
+                  label: context.tr("email"),
                   labelIcon: Icons.email_outlined,
                   obsecureText: false,
                   validator: (String? value) {
@@ -86,7 +87,7 @@ class _SignupPageState extends State<SignupPage> {
                   }),
               MyTextFormField(
                   controller: phoneController,
-                  label: 'Phone Number ',
+                  label: context.tr("phone"),
                   labelIcon: Icons.phone_outlined,
                   obsecureText: false,
                   validator: (String? value) {
@@ -99,7 +100,7 @@ class _SignupPageState extends State<SignupPage> {
                   }),
               MyTextFormField(
                   controller: passwordController,
-                  label: 'Password',
+                  label: context.tr("password"),
                   labelIcon: Icons.lock_outlined,
                   obsecureText: true,
                   isPassword: true,
@@ -144,11 +145,13 @@ class _SignupPageState extends State<SignupPage> {
 
                             // Debug prints
                             print(userData);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => const Profile()),
+                            // );
+
+                            Navigator.pop(context);
                           }
                         },
                         style: OutlinedButton.styleFrom(

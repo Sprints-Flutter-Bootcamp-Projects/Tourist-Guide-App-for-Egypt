@@ -21,14 +21,10 @@ int selectedPage = 0;
 class _MyNavigationBarState extends State<MyNavigationBar> {
   final PageController pageController = PageController();
   static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(title: "Home Page"),
+    HomePage(),
     GovernmentPage(),
     FavouritesPage(),
-    Profile(
-      name: 'user name',
-      email: 'user@example.com',
-      password: 'hashedpass',
-    ),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {

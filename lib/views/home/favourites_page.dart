@@ -37,7 +37,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                 ? Expanded(
                     child: Center(
                       child: Text(
-                        'Starting adding your favourite Places',
+                        context.tr("fav_desc"),
                         style: TextStyle(
                             color: Colors.teal[800],
                             fontSize: 15,

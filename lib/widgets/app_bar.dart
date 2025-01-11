@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/helpers/shared_pref.dart';
 import 'package:tourist_guide/nav_bar.dart';
+import 'package:tourist_guide/views/home/home_page.dart';
 import 'package:tourist_guide/widgets/lang_dialog.dart';
 
 import '../views/authentication/login_page.dart';
@@ -24,30 +26,28 @@ PreferredSizeWidget? PagesAppBar(BuildContext context, String AppBarTitle) {
         onPressed: () => langDialog(context),
       ),
     ],
-    // leading: selectedPage == 3
-    // ? PopupMenuButton(
-    // itemBuilder: (context) => <PopupMenuItem>[
-    // PopupMenuItem(
-    //   child: Text(tr('log_in')),
-    //   onTap: () => Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const LoginPage(),
-    //     ),
-    //   ),
-    // ),
-    // PopupMenuItem(
-    //   child: Text(tr('edit_profile')),
-    //   onTap: () => showModalBottomSheet(
-    //     context: context,
-    //     isScrollControlled: true,
-    //     builder: (context) {
-    //       return editProfile();
-    //     },
-    //   ),
-    // )
-    // ],
-    // )
-    // : null,
+    leading:
+        selectedPage == 3 && AppBarTitle == 'Profile' || AppBarTitle == 'الحساب'
+            ? PopupMenuButton(
+                color: Colors.teal[50],
+                itemBuilder: (context) => <PopupMenuItem>[
+                  // PopupMenuItem(
+                  //   child: Text(tr('edit_profile')),
+                  //   onTap: () => showModalBottomSheet(
+                  //     context: context,
+                  //     isScrollControlled: true,
+                  //     builder: (context) {
+                  //       return editProfile();
+                  //     },
+                  //   ),
+                  // ),
+                  PopupMenuItem(
+                    child: Text(tr('log_out')),
+                    onTap: () => SharedPreferencesHelper.clearUserData(),
+                    // .then((value) => Navigator.pop(context))),
+                  )
+                ],
+              )
+            : null,
   );
 }
