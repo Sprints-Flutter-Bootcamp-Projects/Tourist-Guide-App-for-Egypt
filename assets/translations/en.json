@@ -1,5 +1,7 @@
 {
     "select_language": "Select Language",
+    "title": "Tourist Guide",
+    "sign_up": "Sign up",
     "sign_in": "Sign in",
     "log_in": "Log in",
     "sign_out": "Sign out",
@@ -19,6 +21,7 @@
     "landmarks": "Landmarks",
     "favorites": "Favorites",
     "profile": "Profile",
+    "edit_profile": "Edit Profile",
     "favorites_places": "Favorite Places",
 
     "cairo": "Cairo",

@@ -24,30 +24,30 @@ PreferredSizeWidget? PagesAppBar(BuildContext context, String AppBarTitle) {
         onPressed: () => langDialog(context),
       ),
     ],
-    leading: selectedPage == 3
-        ? PopupMenuButton(
-            itemBuilder: (context) => <PopupMenuItem>[
-              PopupMenuItem(
-                child: Text(tr('log_in')),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
-                  ),
-                ),
-              ),
-              PopupMenuItem(
-                child: Text(tr('Edit_profile')),
-                onTap: () => showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (context) {
-                    return editProfile();
-                  },
-                ),
-              )
-            ],
-          )
-        : null,
+    // leading: selectedPage == 3
+    // ? PopupMenuButton(
+    // itemBuilder: (context) => <PopupMenuItem>[
+    // PopupMenuItem(
+    //   child: Text(tr('log_in')),
+    //   onTap: () => Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => const LoginPage(),
+    //     ),
+    //   ),
+    // ),
+    // PopupMenuItem(
+    //   child: Text(tr('edit_profile')),
+    //   onTap: () => showModalBottomSheet(
+    //     context: context,
+    //     isScrollControlled: true,
+    //     builder: (context) {
+    //       return editProfile();
+    //     },
+    //   ),
+    // )
+    // ],
+    // )
+    // : null,
   );
 }

@@ -5,6 +5,7 @@ import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 import '../../helpers/shared_pref.dart';
+import '../../widgets/app_bar.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -30,25 +31,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sign Up",
-          style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-              color: Color(0xFF004D40)),
-        ),
-        centerTitle: true,
-        actions: const [
-          Icon(
-            Icons.language,
-            color: Color(0xFF004D40),
-          ),
-          SizedBox(
-            width: 8,
-          )
-        ],
-      ),
+      appBar: PagesAppBar(context, context.tr("sign_up")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Form(
@@ -65,8 +48,8 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(
                 height: 12,
               ),
-              const Text(
-                "Tourist Guide",
+              Text(
+                context.tr("title"),
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
@@ -173,14 +156,14 @@ class _SignupPageState extends State<SignupPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6)),
                         ),
-                        child: const Text(
-                          'Sign Up',
+                        child: Text(
+                          context.tr("sign_up"),
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(
+                onPressed: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const LoginPage(),

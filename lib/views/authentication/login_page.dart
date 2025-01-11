@@ -4,6 +4,7 @@ import 'package:tourist_guide/helpers/shared_pref.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 import '../../nav_bar.dart';
+import '../../widgets/app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,13 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          tr('log_in'),
-          style: TextStyle(fontSize: 20, color: Colors.teal.shade700),
-        ),
-      ),
+      appBar: PagesAppBar(context, context.tr("log_in")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Form(
@@ -43,8 +38,8 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 12,
               ),
-              const Text(
-                "Tourist Guide",
+              Text(
+                context.tr("title"),
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
@@ -182,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(
+                onPressed: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const SignupPage(),
@@ -209,10 +204,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  togglePasswordVisibility() {
-    isHiddenPassword = !isHiddenPassword;
-    setState(() {});
   }
 }
