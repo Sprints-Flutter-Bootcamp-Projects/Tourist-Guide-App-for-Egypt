@@ -1,5 +1,3 @@
-<em>This project is part of the Flutter Bootcamp from Sprints and ACC</em>
-### Flutter Fundamentals - Project
 # Tourist Guide App for Egypt
 
 <br>
@@ -17,7 +15,7 @@ A mobile application for tourists visiting Egypt to explore landmarks, museums, 
 6. Bottom Navigation Bar
 7. Favorites Page
 
-### Amazing Design!
+## Amazing Design!
 https://www.figma.com/design/KEjroCCAG4AIkln01XVkbc/Sprints-Tourist-Guide-App?node-id=0-1&t=1opeDcSv2UOy639I-1 
 
 ## Example Output
