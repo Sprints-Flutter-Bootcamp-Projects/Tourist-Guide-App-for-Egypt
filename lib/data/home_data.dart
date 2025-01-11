@@ -1,30 +1,28 @@
-import 'package:flutter/material.dart';
-
 import '../widgets/grid_item.dart';
 
 List<GridItem> gridItems = [
   GridItem(
-    "assets/images/pyramids.jpg",
-    "Pyramids 1",
-    "Egypt",
+    "https://www.egypttoursportal.com/images/2021/04/Cairo-Tower-Egypt-Tours-Portal-1.jpg",
+    "cairo_tower",
+    "cairo",
     isFavourite: false,
   ),
   GridItem(
-    "assets/images/pyramids.jpg",
-    "Pyramids 2",
-    "Egypt",
+    "https://www.cascadianabroad.com/wp-content/uploads/2016/11/featured-image.jpg",
+    "bibliotheca_alexandrina",
+    "alexandria",
     isFavourite: true,
   ),
   GridItem(
-    "assets/images/pyramids.jpg",
-    "Pyramids 3",
-    "Egypt",
+    "https://holidaytours.one/wp-content/uploads/2020/09/fayoum.jpg",
+    "wadi_el_rayan",
+    "al_fayoum",
     isFavourite: true,
   ),
   GridItem(
-    "assets/images/pyramids.jpg",
-    "Pyramids 4",
-    "Egypt",
+    "https://www.luxorandaswan.com/images/16586178660Citadel-Of-Qaitbay.jpg",
+    "qaitbey_fortress",
+    "alexandria",
     isFavourite: true,
   ),
 ];

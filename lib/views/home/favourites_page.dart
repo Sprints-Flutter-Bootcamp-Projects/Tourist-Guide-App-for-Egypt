@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/data/home_data.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
-import 'package:tourist_guide/widgets/grid_item.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
 class FavouritesPage extends StatefulWidget {

@@ -4,9 +4,6 @@ import 'package:tourist_guide/data/home_data.dart';
 import 'package:tourist_guide/widgets/lang_dialog.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
-import '../../helpers/shared_pref.dart';
-import '../../widgets/grid_item.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -21,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -40,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ]),
             Expanded(
-              flex: 8,
+              flex: 7,
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
