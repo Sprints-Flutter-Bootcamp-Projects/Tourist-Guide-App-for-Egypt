@@ -55,7 +55,7 @@ class _SignupPageState extends State<SignupPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(child: Image.asset("Assets/images/logo.png")),
+              Center(child: Image.asset("assets/images/logo.PNG")),
               const SizedBox(
                 height: 16,
               ),
