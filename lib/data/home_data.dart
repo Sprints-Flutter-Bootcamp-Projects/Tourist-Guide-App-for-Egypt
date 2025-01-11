@@ -11,18 +11,18 @@ List<GridItem> gridItems = [
     "https://www.cascadianabroad.com/wp-content/uploads/2016/11/featured-image.jpg",
     "bibliotheca_alexandrina",
     "alexandria",
-    isFavourite: true,
+    isFavourite: false,
   ),
   GridItem(
     "https://holidaytours.one/wp-content/uploads/2020/09/fayoum.jpg",
     "wadi_el_rayan",
     "al_fayoum",
-    isFavourite: true,
+    isFavourite: false,
   ),
   GridItem(
     "https://www.luxorandaswan.com/images/16586178660Citadel-Of-Qaitbay.jpg",
     "qaitbey_fortress",
     "alexandria",
-    isFavourite: true,
+    isFavourite: false,
   ),
 ];

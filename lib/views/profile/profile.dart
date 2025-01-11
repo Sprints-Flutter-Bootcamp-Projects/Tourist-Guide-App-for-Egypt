@@ -77,13 +77,15 @@ class _ProfileState extends State<Profile> {
                                 context.tr("name"),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    color: Colors.teal,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 userData!['name'],
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 17,
                                 ),
                               )
                             ],
@@ -103,12 +105,14 @@ class _ProfileState extends State<Profile> {
                                 context.tr("email"),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    color: Colors.teal,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 userData!['email'],
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(fontSize: 13),
                               ),
                             ],
                           ),
@@ -128,11 +132,13 @@ class _ProfileState extends State<Profile> {
                                 context.tr("password"),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    color: Colors.teal,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 hashedPassword(userData!['password']),
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(fontSize: 17),
                               ),
                             ],
                           ),
@@ -148,11 +154,17 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               )
-            : const Center(
+            : Center(
                 child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(),
+                  Center(
+                    child: Icon(
+                      Icons.person_rounded,
+                      size: 150,
+                      color: Colors.teal[900],
+                    ),
+                  ),
                   Text("No User Data Found"),
                 ],
               )),

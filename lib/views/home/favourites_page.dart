@@ -27,16 +27,12 @@ class _FavouritesPageState extends State<FavouritesPage> {
   Widget build(BuildContext context) {
     // checkFav();
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("favorites")),
+      appBar: PagesAppBar(context, context.tr("favorites_places")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            TextTitle(
-              context.tr("favorites_places"),
-            ),
-            const SizedBox(height: 8.0),
             favList.isEmpty
                 ? Expanded(
                     child: Center(

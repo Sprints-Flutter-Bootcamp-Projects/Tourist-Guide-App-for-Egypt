@@ -8,17 +8,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Egypt Tourist Guide',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal.shade900),
-        useMaterial3: true,
+    return SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Egypt Tourist Guide',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal.shade900),
+          useMaterial3: true,
+        ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: const MyNavigationBar(),
       ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: const MyNavigationBar(),
     );
   }
 }
