@@ -60,4 +60,5 @@ Design should be responsive
 Ensure the app is visually appealing and colorful
 Feel free to innovate with creative designs
 
-
+## Example Output
+![Output Screenshot](screenshot.png)
