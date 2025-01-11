@@ -49,7 +49,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       // https://api.flutter.dev/flutter/material/NavigationBar-class.html
 
       bottomNavigationBar: NavigationBar(
-          backgroundColor: Colors.brown[50],
+          animationDuration: const Duration(milliseconds: 1000),
+          backgroundColor: Colors.green[50],
           indicatorColor: Colors.teal[100],
           selectedIndex: selectedPage,
           onDestinationSelected: _onItemTapped,

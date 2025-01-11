@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/helpers/shared_pref.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
@@ -179,10 +180,18 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                 onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignupPage(),
-                    )),
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.leftToRightWithFade,
+                    duration: Durations.extralong3,
+                    child: SignupPage(),
+                  ),
+                ),
+                //  Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => const SignupPage(),
+                //     )),
                 child: Text(
                   tr('create_new_account'),
                 ),

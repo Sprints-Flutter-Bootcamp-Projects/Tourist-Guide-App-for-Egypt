@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/views/profile/profile.dart';
@@ -167,10 +168,13 @@ class _SignupPageState extends State<SignupPage> {
               ),
               TextButton(
                 onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    )),
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeftWithFade,
+                    duration: Durations.extralong3,
+                    child: LoginPage(),
+                  ),
+                ),
                 child: Text(
                   context.tr('have_an_account'),
                 ),

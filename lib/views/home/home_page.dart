@@ -4,6 +4,8 @@ import 'package:tourist_guide/data/home_data.dart';
 import 'package:tourist_guide/widgets/lang_dialog.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
+import '../../widgets/app_bar.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -15,25 +17,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PagesAppBar(context, context.tr("welcome")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(children: [
-              Expanded(
-                child: TextTitle(
-                  context.tr("suggested_places"),
-                ),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.language,
-                  color: Colors.teal[900],
-                ),
-                onPressed: () => langDialog(context),
-              ),
-            ]),
+            TextTitle(
+              context.tr("suggested_places"),
+            ),
             Expanded(
               flex: 7,
               child: GridView.builder(
