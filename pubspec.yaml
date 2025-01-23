@@ -30,6 +30,7 @@ flutter:
     - assets/translations/en.json
     - assets/translations/ar.json
     - data_source/gov_data.json
+    - data_source/places_data.json
 fonts:
   - family: PlaywriteAUSA
     fonts:

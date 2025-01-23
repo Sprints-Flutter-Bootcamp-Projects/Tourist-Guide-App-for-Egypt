@@ -1,0 +1,73 @@
+{
+    "suggested_places": [
+      {
+        "name": "Pyramids of Giza",
+        "location": "Giza, Egypt",
+        "image": "https://i.pinimg.com/736x/25/01/54/250154c9e6f4d8d683591123c02542ec.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "Karnak Temple",
+        "location": "Luxor, Egypt",
+        "image": "https://i.pinimg.com/736x/26/f9/cd/26f9cd89accb3291d7a0024fff8cd70f.jpg",
+        "addedToFavorite": true
+      },
+      {
+        "name": "Siwa Oasis",
+        "location": "Matrouh, Egypt",
+        "image": "https://i.pinimg.com/736x/47/3f/11/473f11d9fd2d9e2e96eedb3c2135a964.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "Mount Sinai",
+        "location": "South Sinai, Egypt",
+        "image": "https://i.pinimg.com/736x/8e/70/da/8e70da9f4a367540242e4d0a29360de8.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "Valley of the Kings",
+        "location": "Luxor, Egypt",
+        "image": "https://i.pinimg.com/736x/fa/dd/23/fadd23161ac038df633f7b5ee64beb71.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "Ras Mohammed National Park",
+        "location": "Sharm El Sheikh, Egypt",
+        "image": "https://i.pinimg.com/736x/be/ce/a9/becea9923bd7631264f5621e60be1f74.jpg",
+        "addedToFavorite": true
+      },
+      {
+        "name": "Al-Muizz Street",
+        "location": "Cairo, Egypt",
+        "image": "https://i.pinimg.com/736x/31/1f/e6/311fe6d78c910212a49ba08e663a7434.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "Aswan High Dam",
+        "location": "Aswan, Egypt",
+        "image": "https://i.pinimg.com/736x/09/9c/c8/099cc8261f3f0c533dc680a3987d05d8.jpg",
+        "addedToFavorite": true
+      }
+    ],
+    "popular_places": [
+      {
+        "name": "The Egyptian Museum",
+        "location": "Cairo, Egypt",
+        "image": "https://i.pinimg.com/736x/5c/17/a9/5c17a958029d07e794ed55e385754665.jpg",
+        "addedToFavorite": true
+      },
+      {
+        "name": "Abu Simbel Temples",
+        "location": "Aswan, Egypt",
+        "image": "https://i.pinimg.com/736x/df/51/c4/df51c4b2b00aa10f6beb44a1a124ff55.jpg",
+        "addedToFavorite": false
+      },
+      {
+        "name": "The White Desert",
+        "location": "Farafra, Egypt",
+        "image": "https://i.pinimg.com/736x/9e/09/80/9e0980b2dcebf56c0eacabde69031018.jpg",
+        "addedToFavorite": false
+      }
+    ]
+  }
+  

@@ -63,9 +63,10 @@ class _GovernmentListPageState extends State<GovernmentListPage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
+              print(snapshot.error);
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: const Text('No data available'));
+              return const Center(child: Text('No data available'));
             } else {
               final governorates = snapshot.data!;
               return ListView.separated(
