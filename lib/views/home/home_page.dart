@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/data/home_data.dart';
-import 'package:tourist_guide/widgets/lang_dialog.dart';
+import 'package:tourist_guide/navigation/app_drawer.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
-
-import '../../widgets/app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +15,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("welcome")),
+      drawer: AppDrawer(),
+      appBar: AppBar(title: Text(tr("welcome"))),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

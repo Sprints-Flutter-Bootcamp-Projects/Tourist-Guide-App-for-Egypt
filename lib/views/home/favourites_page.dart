@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/navigation/app_drawer.dart';
 import 'package:tourist_guide/widgets/app_bar.dart';
 import 'package:tourist_guide/widgets/text_title.dart';
 
@@ -12,22 +13,14 @@ class FavouritesPage extends StatefulWidget {
 
 List<Widget> favList = [];
 
-// void checkFav() {
-//   favList = [];
-//   for (var item in gridItems) {
-//     if (item.isFavourite == true) {
-//       favList.add(item);
-//       print("favList = ${favList.isEmpty}");
-//     }
-//   }
-// }
-
 class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
-    // checkFav();
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("favorites_places")),
+      appBar: AppBar(
+        title: Text(tr("favorites")),
+      ),
+      drawer: AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

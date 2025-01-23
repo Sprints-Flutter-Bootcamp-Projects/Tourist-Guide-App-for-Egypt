@@ -9,13 +9,13 @@ version: 1.0.0+1
 environment:
   sdk: ^3.5.4
 
-dependencies:  
+dependencies:
+  cupertino_icons: ^1.0.8
+  easy_localization: ^3.0.7
   flutter:
     sdk: flutter
-  
-  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.0.0
   page_transition: ^2.2.1
-  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -37,6 +37,7 @@ fonts:
   - family: Bitter
     fonts:
       - asset: fonts/Bitter/Bitter-Regular.ttf
+
 #
 # For details regarding fonts from package dependencies,
 # see https://flutter.dev/to/font-from-package

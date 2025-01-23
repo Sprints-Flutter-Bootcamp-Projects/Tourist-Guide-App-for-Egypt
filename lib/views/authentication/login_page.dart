@@ -62,32 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              // TextFormField(
-              //   controller: emailController,
-              //   decoration: InputDecoration(
-              //     prefixIcon: const Icon(
-              //       Icons.email_outlined,
-              //       color: Colors.teal,
-              //     ),
-              //     labelText: tr('email'),
-              //     enabledBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(15),
-              //       borderSide: const BorderSide(color: Colors.teal),
-              //     ),
-              //     // border: OutlineInputBorder(
-              //     //   borderRadius: BorderRadius.circular(15),
-              //     //   borderSide: const BorderSide(color: Colors.teal),
-              //     // ),
-              //   ),
-              //   validator: (value) {
-              //     if (value != null && value.isEmpty) {
-              //       return 'Email cannot be empty';
-              //     } else if (!(value!.contains('@'))) {
-              //       return 'Email must contain @[mail]';
-              //     }
-              //     return null;
-              //   },
-              // ),
+            
               MyTextFormField(
                   controller: passwordController,
                   label: context.tr("password"),
@@ -100,33 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                     return null;
                   }),
-              // TextFormField(
-              //   obscureText: isHiddenPassword,
-              //   controller: passwordController,
-              //   validator: (value) {
-              //     if (value != null && value.length < 6) {
-              //       return 'Password must contain 6 characters';
-              //     }
-              //     return null;
-              //   },
-              //   decoration: InputDecoration(
-              //     labelText: tr('password'),
-              //     enabledBorder: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(15),
-              //         borderSide: const BorderSide(color: Colors.teal)),
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(15),
-              //     ),
-              //     prefixIcon: IconButton(
-              //         color: Colors.teal,
-              //         onPressed: () {
-              //           togglePasswordVisibility();
-              //         },
-              //         icon: Icon(isHiddenPassword
-              //             ? Icons.visibility
-              //             : Icons.visibility_off)),
-              //   ),
-              // ),
+            
               FilledButton(
                 style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -187,28 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: SignupPage(),
                   ),
                 ),
-                //  Navigator.pushReplacement(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => const SignupPage(),
-                //     )),
+              
                 child: Text(
                   tr('create_new_account'),
                 ),
               ),
-              // FilledButton(
-              //   style: FilledButton.styleFrom(
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(6))),
-              //   onPressed: () => Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const SignupPage(),
-              //       )),
-              //   child: Text(
-              //     tr('create_new_account'),
-              //   ),
-              // ),
+            
             ],
           ),
         ),

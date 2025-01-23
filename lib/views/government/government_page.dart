@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/data/gov_data.dart';
-import '../../widgets/app_bar.dart';
+import 'package:tourist_guide/navigation/app_drawer.dart';
 import '../../widgets/governorate_list_tile.dart';
 import 'landmark_page.dart';
 
@@ -10,9 +10,6 @@ class GovernmentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // nested routing to navigate to the LandmarkPage and keep the GovernmentPage in the stack
-    // and also to keep the bottom nav bar visible in the LandmarkPage
-
     return Navigator(
       onGenerateRoute: (RouteSettings settings) {
         WidgetBuilder builder;
@@ -42,7 +39,10 @@ class GovernmentListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PagesAppBar(context, tr('government')),
+      drawer: AppDrawer(),
+      appBar: AppBar(
+        title: Text(tr('government')),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(

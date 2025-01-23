@@ -10,6 +10,17 @@
     "create_new_account": "New? Sign up here",
     "have_an_account": "Already have an account? Log in here",
 
+
+    "theme": "Theme",
+    "light_theme": "Light Theme",
+    "dark_theme": "Dark Theme",
+
+    "language": "Language",
+    "language_arabic": "Arabic",
+    "language_english": "English",
+
+    "settings": "Settings",
+
     "name": "Name",    
     "email": "Email",
     "phone": "Phone Number",

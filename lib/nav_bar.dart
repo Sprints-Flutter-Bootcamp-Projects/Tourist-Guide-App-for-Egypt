@@ -8,11 +8,8 @@ import 'package:easy_localization/easy_localization.dart';
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});
 
-  // MyNavigationBar({required Key key}) : super(key: key);/
-
   @override
-  // ignore: library_private_types_in_public_api
-  _MyNavigationBarState createState() => _MyNavigationBarState();
+  State<MyNavigationBar> createState() => _MyNavigationBarState();
 }
 
 bool isLoggedIn = false;
@@ -45,13 +42,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             });
           },
           children: _widgetOptions),
-      //bottom nav bar from material package
-      // https://api.flutter.dev/flutter/material/NavigationBar-class.html
-
       bottomNavigationBar: NavigationBar(
           animationDuration: const Duration(milliseconds: 1000),
-          backgroundColor: Colors.green[50],
-          indicatorColor: Colors.teal[100],
           selectedIndex: selectedPage,
           onDestinationSelected: _onItemTapped,
           destinations: [
