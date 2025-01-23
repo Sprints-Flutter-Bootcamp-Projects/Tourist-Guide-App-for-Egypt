@@ -7,9 +7,9 @@ import '../helpers/shared_pref.dart';
 
 class GridItem extends StatefulWidget {
   final Place place;
-    bool isFavourite;
+  bool isFavourite;
 
-   GridItem({super.key, required this.place, this.isFavourite = false});
+  GridItem({super.key, required this.place, this.isFavourite = false});
 
   @override
   State<GridItem> createState() => _GridItemState();
@@ -60,13 +60,11 @@ class _GridItemState extends State<GridItem> {
             ),
             Expanded(
               child: ListTile(
-                tileColor: Colors.teal[50],
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: 6.0), // Adjust the horizontal padding as needed
                 title: Text(
                   tr(widget.place.name),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Colors.teal[600],
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                       ),
@@ -76,10 +74,6 @@ class _GridItemState extends State<GridItem> {
                   style: const TextStyle(fontSize: 11),
                 ),
                 trailing: IconButton.filledTonal(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.teal[100])),
-                  color: Colors.teal[900],
                   onPressed: () {
                     if (userData != null) {
                       if (widget.isFavourite) {
@@ -110,7 +104,6 @@ class _GridItemState extends State<GridItem> {
                     widget.isFavourite
                         ? Icons.favorite
                         : Icons.favorite_border_outlined,
-                    color: Colors.teal,
                   ),
                 ),
               ),

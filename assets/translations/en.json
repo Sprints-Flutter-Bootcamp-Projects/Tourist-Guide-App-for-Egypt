@@ -9,66 +9,71 @@
     "log_out": "Log out",
     "create_new_account": "New? Sign up here",
     "have_an_account": "Already have an account? Log in here",
-
-
     "theme": "Theme",
     "light_theme": "Light Theme",
     "dark_theme": "Dark Theme",
-
     "language": "Language",
     "language_arabic": "Arabic",
     "language_english": "English",
-
     "settings": "Settings",
-
-    "name": "Name",    
+    "name": "Name",
     "email": "Email",
     "phone": "Phone Number",
     "password": "Password",
     "confirm_password": "Confirm Password",
     "full_name": "Full Name",
-
     "home_page": "Home Page",
     "suggested_places": "Suggested Places",
     "popular_places": "Popular Places",
-
     "government": "Government",
     "governorates": "Governorates",
     "landmarks": "Landmarks",
-
     "profile": "Profile",
     "edit_profile": "Edit Profile",
     "no_profile_desc": "Login to see your profile",
-
     "favorites": "Favorites",
     "fav_desc": "Start adding your favorites places!",
     "favorites_places": "Favorite Places",
-
     "cairo": "Cairo",
     "alexandria": "Alexandria",
     "al_fayoum": "Al-Fayoum",
-
     "cairo_tower": "Cairo Tower",
     "cairo_tower_description": "A free-standing concrete tower in Cairo, Egypt.",
     "cairo_tower_location": "Tahrir Square, Cairo, Egypt",
-
     "egyptian_museum": "The Egyptian Museum",
     "egyptian_museum_description": "One of the largest and most famous museums in the world.",
     "egyptian_museum_location": "Tahrir Square, Cairo, Egypt",
-
     "bibliotheca_alexandria": "Bibliotheca Alexandria",
     "bibliotheca_alexandria_description": "A major library and cultural center located on the shore of the Mediterranean Sea.",
     "bibliotheca_alexandria_location": "El Shatby, Alexandria, Egypt",
-
     "qaitbey_fortress": "The Qaitbey Fortress",
     "qaitbey_fortress_description": "A 15th-century defensive fortress located on the Mediterranean sea coast.",
     "qaitbey_fortress_location": "Alexandria, Egypt",
-
     "wadi_el_rayan": "Wadi El Rayan",
     "wadi_el_rayan_description": "A unique nature protectorate in the Western Desert of Egypt.",
     "wadi_el_rayan_location": "Faiyum Governorate, Egypt",
-
     "lake_qaron": "Lake Qaron",
     "lake_qaron_description": "One of the largest natural lakes in Egypt.",
-    "lake_qaron_location": "Faiyum Governorate, Egypt"
+    "lake_qaron_location": "Faiyum Governorate, Egypt",
+    "load_more": "Load More",
+    "pyramids_of_giza": "Pyramids of Giza",
+    "pyramids_of_giza_location": "Giza, Egypt",
+    "karnak_temple": "Karnak Temple",
+    "karnak_temple_location": "Luxor, Egypt",
+    "siwa_oasis": "Siwa Oasis",
+    "siwa_oasis_location": "Matrouh, Egypt",
+    "mount_sinai": "Mount Sinai",
+    "mount_sinai_location": "South Sinai, Egypt",
+    "valley_of_the_kings": "Valley of the Kings",
+    "valley_of_the_kings_location": "Luxor, Egypt",
+    "ras_mohammed_national_park": "Ras Mohammed National Park",
+    "ras_mohammed_national_park_location": "Sharm El Sheikh, Egypt",
+    "al_muizz_street": "Al-Muizz Street",
+    "al_muizz_street_location": "Cairo, Egypt",
+    "aswan_high_dam": "Aswan High Dam",
+    "aswan_high_dam_location": "Aswan, Egypt",
+    "abu_simbel_temples": "Abu Simbel Temples",
+    "abu_simbel_temples_location": "Aswan, Egypt",
+    "the_white_desert": "The White Desert",
+    "the_white_desert_location": "Farafra, Egypt"
 }
