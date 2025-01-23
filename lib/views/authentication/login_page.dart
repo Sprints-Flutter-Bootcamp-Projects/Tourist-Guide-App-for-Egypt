@@ -2,10 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/helpers/shared_pref.dart';
+import 'package:tourist_guide/nav_bar.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
-import '../../nav_bar.dart';
-import '../../widgets/app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("log_in")),
+      appBar: AppBar(title: Text(tr('login'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Form(
@@ -62,7 +61,6 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-            
               MyTextFormField(
                   controller: passwordController,
                   label: context.tr("password"),
@@ -75,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
                     }
                     return null;
                   }),
-            
               FilledButton(
                 style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -136,12 +133,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: SignupPage(),
                   ),
                 ),
-              
                 child: Text(
                   tr('create_new_account'),
                 ),
               ),
-            
             ],
           ),
         ),

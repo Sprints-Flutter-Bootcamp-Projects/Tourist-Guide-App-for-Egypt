@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/navigation/app_drawer.dart';
-import 'package:tourist_guide/widgets/app_bar.dart';
-import 'package:tourist_guide/widgets/text_title.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
@@ -20,7 +18,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
       appBar: AppBar(
         title: Text(tr("favorites")),
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

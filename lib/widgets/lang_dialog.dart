@@ -15,14 +15,14 @@ void langDialog(context) {
                   context.setLocale(const Locale('ar'));
                   Navigator.pop(context);
                 },
-                child: const Text("Arabic"),
+                child: Text(tr("language_arabic")),
               ),
               TextButton(
                 onPressed: () {
                   context.setLocale(const Locale('en'));
                   Navigator.pop(context);
                 },
-                child: const Text("English"),
+                child: Text(tr("language_english")),
               )
             ],
           ),

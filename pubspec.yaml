@@ -29,6 +29,7 @@ flutter:
     - assets/images/
     - assets/translations/en.json
     - assets/translations/ar.json
+    - data_source/gov_data.json
 fonts:
   - family: PlaywriteAUSA
     fonts:
