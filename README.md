@@ -229,4 +229,4 @@ Feel free to contribute to this project by opening issues or submitting pull req
 License
 -------
 
-This project is licensed under the MIT License. See the [LICENSE] file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Sprints-Flutter-Bootcamp-Projects/Tourist-Guide-App-for-Egypt/blob/authentication/LICENSE) file for details.
