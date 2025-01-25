@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/helpers/shared_pref.dart';
 import 'package:tourist_guide/models/user.dart';
 
@@ -15,27 +15,27 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> mapEventToState(
     ProfileEvent event,
   ) async* {
-    if(event is LoadProfile){
+    if (event is LoadProfile) {
       ProfileLoading();
-      try{
-        final profileData = await SharedPreferencesHelper.getUserData() as List<User>;
+      try {
+        final profileData =
+            await SharedPreferencesHelper.getUserData() as List<User>;
         ProfileLoaded(userData: profileData);
-      }catch(e){
+      } catch (e) {
         ProfileError(error: e.toString());
       }
-    }else if(event is UpdateProfile){
+    } else if (event is UpdateProfile) {
       ProfileLoading();
-      try{
-        
+      try {
         ProfileUpdate();
-      }catch(e){
+      } catch (e) {
         ProfileError(error: e.toString());
       }
-    }else if(event is UpdateAvatar){
+    } else if (event is UpdateAvatar) {
       ProfileLoading();
-      try{
+      try {
         ProfileUpdate();
-      }catch(e){
+      } catch (e) {
         ProfileError(error: e.toString());
       }
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/places/places_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
 import 'package:tourist_guide/controllers/places_controller.dart';
@@ -23,7 +24,10 @@ void main() async {
           ),
           BlocProvider<PlacesBloc>(
             create: (context) => PlacesBloc(PlacesController()),
-          )
+          ),
+          BlocProvider<AuthBloc>(
+            create: (context) => AuthBloc(),
+          ),
         ],
         child: const MyApp(),
       ),

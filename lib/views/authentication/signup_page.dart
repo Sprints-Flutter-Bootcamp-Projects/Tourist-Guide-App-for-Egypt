@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tourist_guide/helpers/shared_pref.dart';
-
+import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
-
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 class SignupPage extends StatefulWidget {
@@ -15,7 +15,6 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -52,7 +51,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               Text(
                 context.tr("title"),
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF004D40)),
@@ -119,52 +118,63 @@ class _SignupPageState extends State<SignupPage> {
                   }),
               SizedBox(
                 width: double.infinity,
-                child: _isLoading
-                    ? const CircularProgressIndicator()
-                    : OutlinedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            setState(() {
-                              _isLoading = true;
-                            });
-                            // Construct user data map
-                            Map<String, dynamic> userData = {
-                              'name': nameController.text,
-                              'email': emailController.text,
-                              'phone': phoneController.text,
-                              'password': passwordController.text,
-                            };
+                child: BlocConsumer<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    //checking whether user exits in the local database
+                    if (state is AuthAuthenticated) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content:
+                                Text(context.tr('this User already exists'))),
+                      );
+                    } //if input credentials doesn't already exist then a new user is created
+                    if (state is AuthUnauthenticated) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(context.tr('signup_successful'))),
+                      );
 
-                            await SharedPreferencesHelper.saveUserData(
-                                userData);
+                      Navigator.pop(context);
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is AuthLoading) {
+                      return const CircularProgressIndicator();
+                    }
+                    return OutlinedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          // Construct user data map
+                          Map<String, dynamic> userData = {
+                            'name': nameController.text,
+                            'email': emailController.text,
+                            'phone': phoneController.text,
+                            'password': passwordController.text,
+                          };
 
-                            // Show success message
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Signup Successful')),
-                            );
+                          context
+                              .read<AuthBloc>()
+                              .add(SignupRequested(userData));
 
-                            // Debug prints
+                          if (kDebugMode) {
                             print(userData);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const Profile()),
-                            // );
-
-                            Navigator.pop(context);
                           }
-                        },
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: const Color(0xFF00695C),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                        ),
-                        child: Text(
-                          context.tr("sign_up"),
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
+                          // Show success message
+                        }
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: const Color(0xFF00695C),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
                       ),
+                      child: Text(
+                        context.tr("sign_up"),
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    );
+                  },
+                ),
               ),
               TextButton(
                 onPressed: () => Navigator.pushReplacement(
@@ -172,7 +182,7 @@ class _SignupPageState extends State<SignupPage> {
                   PageTransition(
                     type: PageTransitionType.rightToLeftWithFade,
                     duration: Durations.extralong3,
-                    child: LoginPage(),
+                    child: const LoginPage(),
                   ),
                 ),
                 child: Text(
