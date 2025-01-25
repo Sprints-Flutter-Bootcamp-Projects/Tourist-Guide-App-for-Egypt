@@ -12,7 +12,6 @@ class MyNavigationBar extends StatefulWidget {
   State<MyNavigationBar> createState() => _MyNavigationBarState();
 }
 
-bool isLoggedIn = false;
 int selectedPage = 0;
 
 class _MyNavigationBarState extends State<MyNavigationBar> {

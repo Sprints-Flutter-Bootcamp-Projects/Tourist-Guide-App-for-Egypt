@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tourist_guide/helpers/shared_pref.dart';
-import 'package:tourist_guide/nav_bar.dart';
+import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
 import 'package:tourist_guide/widgets/my_textformfield.dart';
 
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 context.tr("title"),
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF004D40)),
@@ -73,56 +74,55 @@ class _LoginPageState extends State<LoginPage> {
                     }
                     return null;
                   }),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6))),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    // Retrieve saved user data
-                    Map<String, dynamic>? userData =
-                        await SharedPreferencesHelper.getUserData();
-                    if (userData != null) {
-                      print('User data: $userData');
-
-                      // Compare entered credentials with stored data
-                      if (emailController.text == userData!['email'] &&
-                          passwordController.text == userData['password']) {
-                        // Login successful
-                        // Navigate to home page
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyNavigationBar(),
-                          ),
-                          (route) => false,
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Login Successful')),
-                        );
-                      } else {
-                        // Invalid credentials
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Invalid email or password')),
-                        );
-                      }
-                    } else {
-                      // No user data found
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('No account found. Please sign up.')),
-                      );
+              BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthAuthenticated) {
+                    if (kDebugMode) {
+                      print('User data: ${state.userData}');
                     }
-                  } else {
+
+                    Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Please enter valid data')),
+                      SnackBar(content: Text(context.tr('login_successful'))),
                     );
+                  } else if (state is AuthUnauthenticated) {
+                    // Invalid credentials
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text(context.tr('invalid_credentials'))),
+                    );
+                  } else if (state is AuthError) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(state.errorMsg)));
                   }
-                  Navigator.pop(context);
                 },
-                child: Text(
-                  context.tr('log_in'),
-                ),
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const CircularProgressIndicator();
+                  }
+                  return FilledButton(
+                    style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6))),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<AuthBloc>().add(
+                              LoginRequested(
+                                emailController.text,
+                                passwordController.text,
+                              ),
+                            );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                Text(context.tr('Please_enter_valid_data'))));
+                      }
+                    },
+                    child: Text(
+                      context.tr('log_in'),
+                    ),
+                  );
+                },
               ),
               TextButton(
                 onPressed: () => Navigator.pushReplacement(
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                   PageTransition(
                     type: PageTransitionType.leftToRightWithFade,
                     duration: Durations.extralong3,
-                    child: SignupPage(),
+                    child: const SignupPage(),
                   ),
                 ),
                 child: Text(

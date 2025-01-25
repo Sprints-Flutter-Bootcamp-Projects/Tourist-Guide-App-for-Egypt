@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
-import 'package:tourist_guide/helpers/shared_pref.dart';
-
-import 'package:tourist_guide/views/authentication/login_page.dart';
+import 'package:tourist_guide/views/profile/users_data/userlist.dart';
 import 'package:tourist_guide/widgets/lang_dialog.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -23,7 +22,11 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text(tr("profile")),
-            onTap: () {},
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserListPage(),
+                )),
           ),
           ListTile(
             leading: const Icon(Icons.edit),
@@ -59,13 +62,8 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: Text(tr("log_out")),
             onTap: () {
-              SharedPreferencesHelper.clearUserData();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
+              context.read<AuthBloc>().add(LogoutRequested());
+              Navigator.pop(context);
             },
           ),
         ],
