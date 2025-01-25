@@ -1,0 +1,56 @@
+[
+  {
+    "governorate": "cairo",
+    "governorate_image":"https://i.pinimg.com/736x/59/ab/38/59ab38925f903978dc8fe5acac97446f.jpg",
+    "landmarks": [
+      {
+        "name": "cairo_tower",
+        "description": "cairo_tower_description",
+        "image": "https://www.egypttoursportal.com/images/2021/04/Cairo-Tower-Egypt-Tours-Portal-1.jpg",
+        "location": "cairo_tower_location"
+      },
+      {
+        "name": "egyptian_museum",
+        "description": "egyptian_museum_description",
+        "image": "https://egyptianstreets.com/wp-content/uploads/2021/04/museum2.jpg",
+        "location": "egyptian_museum_location"
+      }
+    ]
+  },
+  {
+    "governorate": "alexandria",
+    "governorate_image":"https://i.pinimg.com/736x/d1/d3/46/d1d34671aac9a25921031d259165d2e9.jpg",
+    "landmarks": [
+      {
+        "name": "bibliotheca_alexandria",
+        "description": "bibliotheca_alexandria_description",
+        "image": "https://www.cascadianabroad.com/wp-content/uploads/2016/11/featured-image.jpg",
+        "location": "bibliotheca_alexandria_location"
+      },
+      {
+        "name": "qaitbey_fortress",
+        "description": "qaitbey_fortress_description",
+        "image": "https://www.luxorandaswan.com/images/16586178660Citadel-Of-Qaitbay.jpg",
+        "location": "qaitbey_fortress_location"
+      }
+    ]
+  },
+  {
+    "governorate": "al_fayoum",
+    "governorate_image":"https://i.pinimg.com/736x/d5/fd/12/d5fd12e76f7b2735dad862a605a01087.jpg",
+    "landmarks": [
+      {
+        "name": "wadi_el_rayan",
+        "description": "wadi_el_rayan_description",
+        "image": "https://holidaytours.one/wp-content/uploads/2020/09/fayoum.jpg",
+        "location": "wadi_el_rayan_location"
+      },
+      {
+        "name": "lake_qaron",
+        "description": "lake_qaron_description",
+        "image": "https://medomed.org/wp-content/uploads/2017/06/Fayoum-egypt.jpg",
+        "location": "lake_qaron_location"
+      }
+    ]
+  }
+]

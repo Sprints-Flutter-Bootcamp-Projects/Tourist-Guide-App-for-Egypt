@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
 import 'package:tourist_guide/nav_bar.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,19 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Egypt Tourist Guide',
-        theme: ThemeData(
-          fontFamily: "Bitter",
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal.shade900),
-          useMaterial3: true,
-        ),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: const MyNavigationBar(),
-      ),
+      child: BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Egypt Tourist Guide',
+          theme: state.themeData,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: const MyNavigationBar(),
+        );
+      }),
     );
   }
 }
