@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tourist_guide/main.dart';
-import 'package:tourist_guide/views/authentication/login_page.dart';
-import 'package:tourist_guide/views/profile/profile.dart';
-import 'package:tourist_guide/widgets/my_textformfield.dart';
+import 'package:tourist_guide/helpers/shared_pref.dart';
 
-import '../../helpers/shared_pref.dart';
-import '../../widgets/app_bar.dart';
+import 'package:tourist_guide/views/authentication/login_page.dart';
+
+import 'package:tourist_guide/widgets/my_textformfield.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -33,7 +31,9 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("sign_up")),
+      appBar: AppBar(
+        title: Text(context.tr('sign_up')),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Form(

@@ -1,16 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/models/place_model.dart';
 import 'package:tourist_guide/views/home/favourites_page.dart';
 
 import '../helpers/shared_pref.dart';
 
 class GridItem extends StatefulWidget {
-  GridItem(this.imgURL, this.title, this.subhead,
-      {super.key, this.isFavourite = false});
-  final String imgURL;
-  final String title;
-  final String subhead;
+  final Place place;
   bool isFavourite;
+
+  GridItem({super.key, required this.place, this.isFavourite = false});
+
   @override
   State<GridItem> createState() => _GridItemState();
 }
@@ -36,7 +36,7 @@ class _GridItemState extends State<GridItem> {
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 image: DecorationImage(
-                  image: NetworkImage(widget.imgURL),
+                  image: NetworkImage(widget.place.image),
                   fit: BoxFit.cover,
                   opacity: 0.5,
                 ),
@@ -47,7 +47,7 @@ class _GridItemState extends State<GridItem> {
               ),
               child: Center(
                 child: Image.network(
-                  widget.imgURL,
+                  widget.place.image,
                   height: 100,
                   width: 100,
                   fit: BoxFit.contain,
@@ -59,58 +59,55 @@ class _GridItemState extends State<GridItem> {
               ),
             ),
             Expanded(
-            child: ListTile(
-              tileColor: Colors.teal[50],
-              contentPadding: const EdgeInsets.symmetric(horizontal: 6.0), // Adjust the horizontal padding as needed
-              title: Text(
-                tr(widget.title),
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Colors.teal[600],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-              ),
-              subtitle: Text(
-                tr(widget.subhead),
-                style: const TextStyle(fontSize: 11),
-              ),
-              trailing: IconButton.filledTonal(
-                style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.teal[100])),
-                color: Colors.teal[900],
-                onPressed: () {
-                  if (userData != null) {
-                    if (widget.isFavourite) {
-                      setState(() {
-                        widget.isFavourite = false;
-                        favList.remove(widget);
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Item removed from Favourites')));
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 6.0), // Adjust the horizontal padding as needed
+                title: Text(
+                  tr(widget.place.name),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                ),
+                subtitle: Text(
+                  tr(widget.place.location),
+                  style: const TextStyle(fontSize: 11),
+                ),
+                trailing: IconButton.filledTonal(
+                  onPressed: () {
+                    if (userData != null) {
+                      if (widget.isFavourite) {
+                        setState(() {
+                          widget.place.addedToFavorite = false;
+                          favList.remove(widget);
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Item removed from Favourites')));
+                      } else {
+                        setState(() {
+                          favList.add(widget);
+                          widget.isFavourite = true;
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text("Item added to Favorites")),
+                        );
+                      }
                     } else {
-                      setState(() {
-                        favList.add(widget);
-                        widget.isFavourite = true;
-                      });
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Item added to Favorites")),
+                        const SnackBar(content: Text("You Must Login First")),
                       );
                     }
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("You Must Login First")),
-                    );
-                  }
-                },
-                icon: Icon(
-                  widget.isFavourite
-                      ? Icons.favorite
-                      : Icons.favorite_border_outlined,
-                  color: Colors.teal,
+                  },
+                  icon: Icon(
+                    widget.isFavourite
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                  ),
                 ),
               ),
             ),
-          ),
           ],
         ),
       ),

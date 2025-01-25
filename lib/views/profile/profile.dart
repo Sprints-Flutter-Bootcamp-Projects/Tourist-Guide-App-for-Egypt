@@ -1,10 +1,10 @@
 //customizalbe flutter moji
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/navigation/app_drawer.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:fluttermoji/fluttermoji.dart';
-import '../../helpers/shared_pref.dart';
-import 'package:tourist_guide/widgets/app_bar.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -20,10 +20,10 @@ class _ProfileState extends State<Profile> {
   void checkUser() async {
     userData = await SharedPreferencesHelper.getUserData();
     if (userData != null) {
-      print('Profile User data: $userData');
+      // print('Profile User data: $userData');
       isUser = true;
     } else {
-      print("No user data found.");
+      // print("No user data found.");
       isUser = false;
     }
     setState(() {});
@@ -41,7 +41,8 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     checkUser();
     return Scaffold(
-      appBar: PagesAppBar(context, context.tr("profile")),
+      appBar: AppBar(title: Text(tr("profile"))),
+      drawer: AppDrawer(),
       body: isUser
           ? Padding(
               padding: const EdgeInsets.all(8.0),
