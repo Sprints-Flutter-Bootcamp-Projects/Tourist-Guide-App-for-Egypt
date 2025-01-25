@@ -1,10 +1,10 @@
 //customizalbe flutter moji
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttermoji/fluttermoji.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
-import 'package:tourist_guide/widgets/app_bar.dart';
+import 'package:fluttermoji/fluttermoji.dart';
 import '../../helpers/shared_pref.dart';
+import 'package:tourist_guide/widgets/app_bar.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
