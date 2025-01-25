@@ -1,9 +1,12 @@
+//customizalbe flutter moji
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/navigation/app_drawer.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
+import 'package:fluttermoji/fluttermoji.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -13,6 +16,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  bool isUser = false;
+  Map<String, dynamic>? userData;
+
+  void checkUser() async {
+    userData = await SharedPreferencesHelper.getUserData();
+    if (userData != null) {
+      // print('Profile User data: $userData');
+      isUser = true;
+    } else {
+      // print("No user data found.");
+      isUser = false;
+    }
+    setState(() {});
+  }
   String hashedPassword(String password) {
     String hashed = '';
     for (int i = 0; i < password.length; i++) {
@@ -23,6 +40,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    checkUser();
     return Scaffold(
         appBar: AppBar(title: Text(tr("profile"))),
         drawer: const AppDrawer(),
@@ -132,10 +150,19 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
-                      child: Icon(
-                        Icons.person_rounded,
-                        size: 150,
-                        color: Colors.teal[900],
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FluttermojiCustomizer(),
+                            ),
+                          );
+                        },
+                        child: FluttermojiCircleAvatar(
+                          radius: 75,
+                          backgroundColor: Colors.teal[100],
+                        ),
                       ),
                     ),
                     Text(
@@ -163,5 +190,50 @@ class _ProfileState extends State<Profile> {
             }
           },
         ));
+              ),
+            )
+          : Center(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // FluttermojiCircleAvatar wrapped in InkWell
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FluttermojiCustomizer(),
+                        ),
+                      );
+                    },
+                    child: FluttermojiCircleAvatar(
+                      radius: 75,
+                      backgroundColor: Colors.teal[100],
+                    ),
+                  ),
+                ),
+                Text(
+                  context.tr("no_profile_desc"),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6))),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      )),
+                  child: Text(
+                    tr('log_in'),
+                  ),
+                ),
+              ],
+            )),
+    );
   }
 }
