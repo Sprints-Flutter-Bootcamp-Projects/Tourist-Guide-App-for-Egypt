@@ -1,21 +1,35 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'profile_bloc.dart';
 
 @immutable
 abstract class ProfileEvent {}
 
-class LoadProfile extends ProfileEvent{}
+class LoadProfile extends ProfileEvent {
+  final bool allowCache;
+
+  LoadProfile({required this.allowCache});
+}
+
+class CreateProfile extends ProfileEvent {
+  final User user;
+
+  CreateProfile(this.user);
+}
 
 class UpdateProfile extends ProfileEvent {
-  final User profileUpdate;
-  UpdateProfile({
-    required this.profileUpdate,
-  });
+  final User user;
+
+  UpdateProfile(this.user);
+}
+
+class DeleteProfile extends ProfileEvent {
+  final String userId;
+
+  DeleteProfile(this.userId);
 }
 
 class UpdateAvatar extends ProfileEvent {
-  final String newAvatar;
-  UpdateAvatar({
-    required this.newAvatar,
-  });
+  final User user;
+  final String avatarUrl;
+
+  UpdateAvatar(this.user, this.avatarUrl);
 }

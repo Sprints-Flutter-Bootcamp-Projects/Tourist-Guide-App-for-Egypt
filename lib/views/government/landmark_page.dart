@@ -2,7 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/governorate_model.dart';
-import 'package:tourist_guide/widgets/lang_dialog.dart';
+import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 
 class LandmarkPage extends StatefulWidget {
   final Governorate governorate;
@@ -49,7 +49,9 @@ class _LandmarkPageState extends State<LandmarkPage> {
                 title: Text(
                   tr(widget.governorate.governorate),
                   style: TextStyle(
-                    color: _isAppBarExpanded ? Theme.of(context).colorScheme.onSurface : Colors.white,
+                    color: _isAppBarExpanded
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Colors.white,
                   ),
                 ),
                 background: Stack(

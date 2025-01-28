@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
-import 'package:tourist_guide/widgets/my_textformfield.dart';
+import 'package:tourist_guide/utils/widgets/my_textformfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 listener: (context, state) {
                   if (state is AuthAuthenticated) {
                     if (kDebugMode) {
-                      print('User data: ${state.userData}');
+                      print('User data: ${state.user.toJson()}');
                     }
 
                     Navigator.pop(context);

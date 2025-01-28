@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/controllers/governorate_controller.dart';
 import 'package:tourist_guide/models/governorate_model.dart';
 import 'package:tourist_guide/views/government/landmark_page.dart';
-import 'package:tourist_guide/widgets/governorate_list_tile.dart';
+import 'package:tourist_guide/utils/widgets/governorate_list_tile.dart';
 
 class GovernmentPage extends StatelessWidget {
   const GovernmentPage({super.key});
@@ -53,7 +53,7 @@ class _GovernmentListPageState extends State<GovernmentListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Governorates'),
+        title: Text(context.tr('governorates')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
