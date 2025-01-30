@@ -4,8 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
-import 'package:tourist_guide/views/profile/users_data/userlist.dart';
-import 'package:tourist_guide/widgets/lang_dialog.dart';
+import 'package:tourist_guide/views/users_data/users_list.dart';
+import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -22,10 +22,15 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text(tr("profile")),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: Text(tr("users_profiles")),
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => UserListPage(),
+                  builder: (context) => const UserListPage(),
                 )),
           ),
           ListTile(

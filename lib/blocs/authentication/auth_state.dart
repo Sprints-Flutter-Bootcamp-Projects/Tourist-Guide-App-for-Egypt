@@ -8,9 +8,9 @@ class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
 
 class AuthAuthenticated extends AuthState {
-  final Map<String, dynamic> userData;
+  final User user;
 
-  AuthAuthenticated(this.userData);
+  AuthAuthenticated(this.user);
 }
 
 class AuthUnauthenticated extends AuthState {}

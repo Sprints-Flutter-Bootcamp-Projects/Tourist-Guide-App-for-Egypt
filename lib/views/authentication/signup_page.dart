@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
+import 'package:tourist_guide/models/user.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
-import 'package:tourist_guide/widgets/my_textformfield.dart';
+import 'package:tourist_guide/utils/widgets/my_textformfield.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -16,7 +17,8 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -60,8 +62,21 @@ class _SignupPageState extends State<SignupPage> {
                 height: 24,
               ),
               MyTextFormField(
-                  controller: nameController,
-                  label: context.tr("full_name"),
+                  controller: firstNameController,
+                  label: context.tr("first_name"),
+                  labelIcon: Icons.person_outlined,
+                  obsecureText: false,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    } else if (!nameRegExp.hasMatch(value)) {
+                      return 'Invalid name';
+                    }
+                    return null;
+                  }),
+              MyTextFormField(
+                  controller: lastNameController,
+                  label: context.tr("last_name"),
                   labelIcon: Icons.person_outlined,
                   obsecureText: false,
                   validator: (String? value) {
@@ -144,20 +159,24 @@ class _SignupPageState extends State<SignupPage> {
                     return OutlinedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          // Construct user data map
-                          Map<String, dynamic> userData = {
-                            'name': nameController.text,
-                            'email': emailController.text,
-                            'phone': phoneController.text,
-                            'password': passwordController.text,
-                          };
+                          User newUser = User(
+                              id: DateTime.now()
+                                  .millisecondsSinceEpoch
+                                  .toString(), //using the current time in ms as a unique id for new users
+                              //which is used also to delete users
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              email: emailController.text,
+                              password: passwordController.text,
+                              avatar:
+                                  'https://reqres.in/img/faces/1-image.jpg');
 
                           context
                               .read<AuthBloc>()
-                              .add(SignupRequested(userData));
+                              .add(SignupRequested(newUser));
 
                           if (kDebugMode) {
-                            print(userData);
+                            print(newUser.toJson());
                           }
                           // Show success message
                         }
