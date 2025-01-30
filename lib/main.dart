@@ -7,10 +7,15 @@ import 'package:tourist_guide/blocs/profile/profile_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
 import 'package:tourist_guide/controllers/places_controller.dart';
 import 'package:tourist_guide/landing_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     EasyLocalization(

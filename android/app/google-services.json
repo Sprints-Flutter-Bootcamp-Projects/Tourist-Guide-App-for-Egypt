@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898404056801",
+    "project_id": "sprints-tourist-guide",
+    "storage_bucket": "sprints-tourist-guide.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898404056801:android:34fa76412436e1493e01a0",
+        "android_client_info": {
+          "package_name": "com.example.tourist_guide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0to8qcKwvApjlTIi894TckfrbecLvM6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
