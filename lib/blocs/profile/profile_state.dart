@@ -8,7 +8,7 @@ class ProfileInitial extends ProfileState {}
 class ProfileLoading extends ProfileState {}
 
 class ProfileLoaded extends ProfileState {
-  final List<User> users;
+  final List<APIUser> users;
 
   ProfileLoaded(this.users);
 }

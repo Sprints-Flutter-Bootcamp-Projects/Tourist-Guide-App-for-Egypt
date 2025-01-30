@@ -13,7 +13,22 @@ class LoginRequested extends AuthEvent {
 class LogoutRequested extends AuthEvent {}
 
 class SignupRequested extends AuthEvent {
-  final User user;
+  final APIUser user;
 
   SignupRequested(this.user);
+}
+
+// Firebase events
+
+class FirebaseSignUpRequested extends AuthEvent {
+  final FirebaseUser user;
+
+  FirebaseSignUpRequested(this.user);
+}
+
+class FirebaseLoginRequested extends AuthEvent {
+  final String userEmail;
+  final String userPassword;
+
+  FirebaseLoginRequested(this.userEmail, this.userPassword);
 }

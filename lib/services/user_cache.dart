@@ -7,7 +7,7 @@ class UserCache {
   static const String _key = 'cached_users';
 
   // Save users to SharedPreferences
-  static Future<void> saveUsers(List<User> users) async {
+  static Future<void> saveUsers(List<APIUser> users) async {
     final prefs = await SharedPreferences.getInstance();
     final userJsonList =
         users.map((user) => jsonEncode(user.toJson())).toList();
@@ -15,11 +15,11 @@ class UserCache {
   }
 
   // Load users from SharedPreferences
-  static Future<List<User>> getUsers() async {
+  static Future<List<APIUser>> getUsers() async {
     final prefs = await SharedPreferences.getInstance();
     final userJsonList = prefs.getStringList(_key) ?? [];
     return userJsonList
-        .map((userJson) => User.fromJson(jsonDecode(userJson)))
+        .map((userJson) => APIUser.fromJson(jsonDecode(userJson)))
         .toList();
   }
 

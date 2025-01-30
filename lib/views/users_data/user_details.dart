@@ -7,10 +7,10 @@ import 'package:tourist_guide/views/users_data/management/edit_user.dart';
 
 // ignore: must_be_immutable
 class UserDetailsPage extends StatelessWidget {
-  User user;
+  APIUser user;
   int userIndex;
-  final Function(User) onUpdate;
-  final Function(User) onDelete;
+  final Function(APIUser) onUpdate;
+  final Function(APIUser) onDelete;
 
   UserDetailsPage({
     super.key,

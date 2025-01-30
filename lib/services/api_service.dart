@@ -6,7 +6,7 @@ class ApiService {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'https://reqres.in/api'));
 
   // Fetch users with caching
-  Future<List<User>> getUsers({required bool allowCache}) async {
+  Future<List<APIUser>> getUsers({required bool allowCache}) async {
     try {
       // Try to load cached users first
       if (allowCache) {
@@ -19,7 +19,7 @@ class ApiService {
       // If no cached data, fetch from API
       final response = await _dio.get('/users');
       final users = (response.data['data'] as List)
-          .map((user) => User.fromJson(user))
+          .map((user) => APIUser.fromJson(user))
           .toList();
 
       // Save fetched users to cache
@@ -31,10 +31,10 @@ class ApiService {
   }
 
   // Create a new user
-  Future<User> createUser(User user) async {
+  Future<APIUser> createUser(APIUser user) async {
     try {
       final response = await _dio.post('/users', data: user.toJson());
-      final newUser = User.fromJson(response.data);
+      final newUser = APIUser.fromJson(response.data);
 
       // Update cache with the new user
       final cachedUsers = await UserCache.getUsers();
@@ -48,10 +48,10 @@ class ApiService {
   }
 
   // Update a user
-  Future<User> updateUser(User user) async {
+  Future<APIUser> updateUser(APIUser user) async {
     try {
       final response = await _dio.put('/users/${user.id}', data: user.toJson());
-      final updatedUser = User.fromJson(response.data);
+      final updatedUser = APIUser.fromJson(response.data);
 
       // Update cache with the updated user
       final cachedUsers = await UserCache.getUsers();
@@ -67,13 +67,13 @@ class ApiService {
     }
   }
 
-  Future<User> updateUserAvatar(User user, String avatar) async {
+  Future<APIUser> updateUserAvatar(APIUser user, String avatar) async {
     try {
       final response = await _dio.put('/users/${user.id}', data: user.toJson());
-      final updatedUser = User.fromJson(response.data);
+      final updatedUser = APIUser.fromJson(response.data);
 
       // Update cache with the updated user
-      final List<User> cachedUsers = await UserCache.getUsers();
+      final List<APIUser> cachedUsers = await UserCache.getUsers();
       final index = cachedUsers.indexWhere((u) => u.id == user.id);
       if (index != -1) {
         cachedUsers[index].avatar = avatar;

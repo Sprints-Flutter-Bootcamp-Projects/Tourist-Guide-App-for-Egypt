@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/user.dart';
 
 class AddUserPage extends StatelessWidget {
-  final Function(User) onCreate;
+  final Function(APIUser) onCreate;
 
   AddUserPage({super.key, required this.onCreate});
 
@@ -58,7 +58,7 @@ class AddUserPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final newUser = User(
+                    final newUser = APIUser(
                       id: DateTime.now().millisecondsSinceEpoch.toString(),
                       firstName: _firstNameController.text,
                       lastName: _lastNameController.text,

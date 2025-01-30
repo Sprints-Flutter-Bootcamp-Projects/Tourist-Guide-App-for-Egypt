@@ -10,13 +10,13 @@ class LoadProfile extends ProfileEvent {
 }
 
 class CreateProfile extends ProfileEvent {
-  final User user;
+  final APIUser user;
 
   CreateProfile(this.user);
 }
 
 class UpdateProfile extends ProfileEvent {
-  final User user;
+  final APIUser user;
 
   UpdateProfile(this.user);
 }
@@ -28,7 +28,7 @@ class DeleteProfile extends ProfileEvent {
 }
 
 class UpdateAvatar extends ProfileEvent {
-  final User user;
+  final APIUser user;
   final String avatarUrl;
 
   UpdateAvatar(this.user, this.avatarUrl);

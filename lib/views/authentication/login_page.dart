@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
@@ -77,9 +76,9 @@ class _LoginPageState extends State<LoginPage> {
               BlocConsumer<AuthBloc, AuthState>(
                 listener: (context, state) {
                   if (state is AuthAuthenticated) {
-                    if (kDebugMode) {
-                      print('User data: ${state.user.toJson()}');
-                    }
+                    // if (kDebugMode) {
+                    //   print('User data: ${state.user.toJson()}');
+                    // }
 
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -106,12 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(6))),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        context.read<AuthBloc>().add(
-                              LoginRequested(
-                                emailController.text,
-                                passwordController.text,
-                              ),
-                            );
+                        context.read<AuthBloc>().add(FirebaseLoginRequested(
+                            emailController.text, passwordController.text));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content:
@@ -125,14 +120,16 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               TextButton(
-                onPressed: () => Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.leftToRightWithFade,
-                    duration: Durations.extralong3,
-                    child: const SignupPage(),
-                  ),
-                ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.leftToRightWithFade,
+                      duration: Durations.extralong3,
+                      child: const SignupPage(),
+                    ),
+                  );
+                },
                 child: Text(
                   tr('create_new_account'),
                 ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/user.dart';
 
 class EditUserPage extends StatefulWidget {
-  final User user;
-  final Function(User) onUpdate;
+  final APIUser user;
+  final Function(APIUser) onUpdate;
 
   const EditUserPage({
     super.key,
@@ -76,7 +76,7 @@ class _EditUserPageState extends State<EditUserPage> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final updatedUser = User(
+                    final updatedUser = APIUser(
                       id: widget.user.id,
                       firstName: _firstNameController.text,
                       lastName: _lastNameController.text,

@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
+import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 import 'package:tourist_guide/models/user.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/utils/widgets/my_textformfield.dart';
+import 'package:tourist_guide/views/home/home_page.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -159,26 +164,89 @@ class _SignupPageState extends State<SignupPage> {
                     return OutlinedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          User newUser = User(
-                              id: DateTime.now()
-                                  .millisecondsSinceEpoch
-                                  .toString(), //using the current time in ms as a unique id for new users
-                              //which is used also to delete users
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
+                          // User newUser = User(
+                          //     id: DateTime.now()
+                          //         .millisecondsSinceEpoch
+                          //         .toString(), //using the current time in ms as a unique id for new users
+                          //     //which is used also to delete users
+                          //     firstName: firstNameController.text,
+                          //     lastName: lastNameController.text,
+                          //     email: emailController.text,
+                          //     password: passwordController.text,
+                          //     avatar:
+                          //         'https://reqres.in/img/faces/1-image.jpg');
+
+                          // create a firebase user object
+                          // FirebaseUser newUser = FirebaseUser(
+                          //     firstName: firstNameController.text,
+                          //     lastName: lastNameController.text,
+                          //     email: emailController.text,
+                          //     password: passwordController.text,
+                          //     phone: phoneController.text);
+
+                          // context
+                          //     .read<AuthBloc>()
+                          //     .add(FirebaseSignUpRequested(newUser));
+
+                          // // add user to the firestore database
+                          // var db = FirebaseFirestore.instance;
+                          // await db
+                          //     .collection("users")
+                          //     .withConverter<FirebaseUser>(
+                          //       fromFirestore: (snapshot, _) =>
+                          //           FirebaseUser.fromFirestore(snapshot),
+                          //       toFirestore: (FirebaseUser user, _) =>
+                          //           user.toFirestore(),
+                          //     )
+                          //     .add(newUser);
+
+                          // if (kDebugMode) {
+                          //   print(newUser.toJson());
+                          // }
+
+                          // Show success message
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     SnackBar(
+                          //         content: Text(context.tr('signup_successful'))),
+                          //   );
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => const HomePage()));
+                          // }
+
+                          try {
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .createUserWithEmailAndPassword(
                               email: emailController.text,
                               password: passwordController.text,
-                              avatar:
-                                  'https://reqres.in/img/faces/1-image.jpg');
+                            );
 
-                          context
-                              .read<AuthBloc>()
-                              .add(SignupRequested(newUser));
+                            // Retrieve the UID from Firebase Auth
+                            String uid = userCredential.user!.uid;
 
-                          if (kDebugMode) {
-                            print(newUser.toJson());
+                            // Create FirebaseUser object
+                            FirebaseUser newUser = FirebaseUser(
+                              id: uid, // Assign UID
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              phone: phoneController.text,
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+
+                            // Save to Firestore using UID as document ID
+                            await FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(uid) // Save under UID
+                                .set(newUser.toFirestore());
+
+                            print(
+                                "User registered and saved to Firestore successfully!");
+                          } catch (e) {
+                            print("Error signing up: $e");
                           }
-                          // Show success message
                         }
                       },
                       style: OutlinedButton.styleFrom(

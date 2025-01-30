@@ -1,4 +1,4 @@
-class User {
+class APIUser {
   final String id;
   final String firstName;
   final String lastName;
@@ -6,7 +6,7 @@ class User {
   String? password;
   String avatar;
 
-  User({
+  APIUser({
     required this.id,
     required this.firstName,
     required this.lastName,
@@ -15,8 +15,8 @@ class User {
     this.password = '123456',
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory APIUser.fromJson(Map<String, dynamic> json) {
+    return APIUser(
       id: json['id'].toString(),
       firstName: json['first_name'] ?? json['firstName'],
       lastName: json['last_name'] ?? json['lastName'],

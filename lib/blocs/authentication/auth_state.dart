@@ -8,9 +8,9 @@ class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
 
 class AuthAuthenticated extends AuthState {
-  final User user;
-
+  final FirebaseUser user;
   AuthAuthenticated(this.user);
+  // AuthAuthenticated();
 }
 
 class AuthUnauthenticated extends AuthState {}
