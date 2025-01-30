@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
-import 'package:tourist_guide/navigation/app_drawer.dart';
+import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 
 class Profile extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(tr("profile"))),
+        appBar: AppBar(title: Text(context.tr("profile"))),
         drawer: const AppDrawer(),
         body: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
@@ -36,10 +36,9 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Icon(
-                          Icons.person_rounded,
-                          size: 150,
-                          color: Colors.teal[900],
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(state.user.avatar),
+                          radius: 70,
                         ),
                       ),
                       Padding(
@@ -59,12 +58,12 @@ class _ProfileState extends State<Profile> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  state.userData['name'],
+                                  '${state.user.firstName} ${state.user.lastName}',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 17,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -87,7 +86,7 @@ class _ProfileState extends State<Profile> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  state.userData['email'],
+                                  state.user.email,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(fontSize: 13),
                                 ),
@@ -114,7 +113,7 @@ class _ProfileState extends State<Profile> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  hashedPassword(state.userData['password']),
+                                  hashedPassword(state.user.password!),
                                   style: const TextStyle(fontSize: 17),
                                 ),
                               ],

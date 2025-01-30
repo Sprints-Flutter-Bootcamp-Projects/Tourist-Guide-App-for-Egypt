@@ -13,7 +13,7 @@ class LoginRequested extends AuthEvent {
 class LogoutRequested extends AuthEvent {}
 
 class SignupRequested extends AuthEvent {
-  final Map<String, dynamic> userData;
+  final User user;
 
-  SignupRequested(this.userData);
+  SignupRequested(this.user);
 }

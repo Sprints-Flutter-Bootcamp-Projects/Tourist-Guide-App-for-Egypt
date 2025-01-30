@@ -1,40 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/user.dart';
 
-class EditUserPage extends StatefulWidget {
-  final User user;
-  final Function(User) onUpdate;
+class AddUserPage extends StatelessWidget {
+  final Function(User) onCreate;
 
-  const EditUserPage({
-    super.key,
-    required this.user,
-    required this.onUpdate,
-  });
+  AddUserPage({super.key, required this.onCreate});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _EditUserPageState createState() => _EditUserPageState();
-}
-
-class _EditUserPageState extends State<EditUserPage> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _firstNameController;
-  late TextEditingController _lastNameController;
-  late TextEditingController _emailController;
-
-  @override
-  void initState() {
-    super.initState();
-    _firstNameController = TextEditingController(text: widget.user.firstName);
-    _lastNameController = TextEditingController(text: widget.user.lastName);
-    _emailController = TextEditingController(text: widget.user.email);
-  }
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit User'),
+        title: const Text('Add User'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,7 +26,7 @@ class _EditUserPageState extends State<EditUserPage> {
             children: [
               TextFormField(
                 controller: _firstNameController,
-                decoration: InputDecoration(labelText: 'First Name'),
+                decoration: const InputDecoration(labelText: 'First Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a first name';
@@ -54,7 +36,7 @@ class _EditUserPageState extends State<EditUserPage> {
               ),
               TextFormField(
                 controller: _lastNameController,
-                decoration: InputDecoration(labelText: 'Last Name'),
+                decoration: const InputDecoration(labelText: 'Last Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a last name';
@@ -64,7 +46,7 @@ class _EditUserPageState extends State<EditUserPage> {
               ),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an email';
@@ -72,30 +54,34 @@ class _EditUserPageState extends State<EditUserPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final updatedUser = User(
-                      id: widget.user.id,
+                    final newUser = User(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
                       firstName: _firstNameController.text,
                       lastName: _lastNameController.text,
                       email: _emailController.text,
-                      avatar: widget.user.avatar,
+                      avatar: 'https://reqres.in/img/faces/1-image.jpg',
                     );
+
                     try {
-                      await widget.onUpdate(updatedUser);
+                      await onCreate(newUser);
+                      if (kDebugMode) {
+                        print(newUser.toJson());
+                      }
                       // ignore: use_build_context_synchronously
-                      Navigator.pop(context, updatedUser);
+                      Navigator.pop(context);
                     } catch (e) {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Failed to update user: $e')),
+                        SnackBar(content: Text('Failed to create user: $e')),
                       );
                     }
                   }
                 },
-                child: Text('Save'),
+                child: const Text('Save'),
               ),
             ],
           ),

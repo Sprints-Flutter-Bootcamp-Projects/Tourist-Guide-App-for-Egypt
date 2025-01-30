@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/navigation/app_drawer.dart';
+import 'package:tourist_guide/app_drawer.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});

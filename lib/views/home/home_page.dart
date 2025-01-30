@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/places/places_bloc.dart';
 import 'package:tourist_guide/models/place_model.dart';
-import 'package:tourist_guide/navigation/app_drawer.dart';
-import 'package:tourist_guide/widgets/grid_item.dart';
+import 'package:tourist_guide/app_drawer.dart';
+import 'package:tourist_guide/utils/widgets/grid_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
-      appBar: AppBar(title: Text(tr("welcome"))),
+      appBar: AppBar(title: Text(context.tr("welcome"))),
       body: BlocConsumer<PlacesBloc, PlacesState>(
         listener: (context, state) {
           if (state is PlacesError) {

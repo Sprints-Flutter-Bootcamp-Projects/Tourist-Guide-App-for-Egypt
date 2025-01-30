@@ -12,13 +12,15 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
-  easy_localization: ^3.0.7
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
   page_transition: ^2.2.1
   shared_preferences: ^2.4.0
-
+  easy_localization: ^3.0.7
+  fluttermoji: ^1.0.2
+  flutter_native_splash: ^2.4.4
+  
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
@@ -45,3 +47,16 @@ fonts:
 #
 # For details regarding fonts from package dependencies,
 # see https://flutter.dev/to/font-from-package
+flutter_native_splash:
+  android: true
+  ios: false
+  web: true
+  image: assets/images/splash.png
+  color: "#d4e4de"
+  android_gravity: fill 
+  fullscreen: true
+  android_12:
+    color: "#d4e4de"
+    image: assets/images/splash.png
+    android_gravity: fill
+    android_v2: true

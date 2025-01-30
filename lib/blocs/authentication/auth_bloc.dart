@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tourist_guide/helpers/shared_pref.dart';
+import 'package:tourist_guide/models/user.dart';
+import 'package:tourist_guide/services/api_service.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -14,14 +15,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignupRequested>(signUp);
   }
 
+  final ApiService apiService = ApiService();
+
   void checkUser(LoginRequested event, Emitter<AuthState> emit) async {
     try {
       emit(AuthLoading());
-      var userData = await SharedPreferencesHelper.getUserData();
-      if (userData != null &&
-          event.userEmail == userData['email'] &&
-          event.userPassword == userData['password']) {
-        emit(AuthAuthenticated(userData));
+      final users = await apiService.getUsers(allowCache: true);
+      //returning the user index if it exists and if not then -1 is returned
+      final index = users.indexWhere(
+        (user) =>
+            event.userEmail == user.email &&
+            event.userPassword == user.password,
+      );
+      if (index != -1) {
+        emit(AuthAuthenticated(users[index]));
       } else {
         emit(AuthUnauthenticated());
       }
@@ -33,12 +40,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> signUp(SignupRequested event, Emitter<AuthState> emit) async {
     try {
       emit(AuthLoading());
-      var userData = await SharedPreferencesHelper.getUserData();
-      if (userData != null && event.userData['email'] == userData['email']) {
-        emit(AuthAuthenticated(userData));
+      final users = await apiService.getUsers(allowCache: true);
+      final index = users.indexWhere((user) => event.user.email == user.email);
+      if (index != -1) {
+        emit(AuthAuthenticated(users[index]));
       } else {
         emit(AuthUnauthenticated());
-        await SharedPreferencesHelper.saveUserData(event.userData);
+        await apiService.createUser(event.user);
       }
     } on Exception catch (e) {
       AuthError(e.toString());
