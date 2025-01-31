@@ -1,6 +1,27 @@
 Tourist Guide App for Egypt
 ===========================
 
+<br>
+<br>
+<br>
+
+
+# !! Latest Update !!
+### Added Firebase Authentication for user sign in/up with the logout functionality working and saving the user data in firestore database along with the favorite places he/she liked
+
+<img src="r-signin.png" alt="Light Theme" width="600">
+<img src="r-users.png" alt="Light Theme" width="600">
+<br>
+<img src="r-home-page.jpeg" alt="Light Theme" height="400">
+<img src="r-fav-data.png" alt="Light Theme" width="600">
+<img src="r-fav-page.jpeg" alt="Light Theme" height="400">
+
+
+<br>
+<br>
+<br>
+
+
 Project General Description
 ---------------------------
 
@@ -127,11 +148,13 @@ For details on how to add or customize these assets and fonts, refer to the [Fl
 
 Example Demo
 ------------
-![Output Demo](tour-guide-app.gif)
+<img src="tour-guide-app.gif" alt="Output Demo" height="400">
+
 
 Example Output
 --------------
-![Output Screenshot](screenshot.png)
+<img src="screenshot.png" alt="Output Screenshot" height="400">
+
 
 Code Structure
 --------------
