@@ -140,15 +140,14 @@ class _SignupPageState extends State<SignupPage> {
                 width: double.infinity,
                 child: BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
-                    //checking whether user exits in the local database
-                    if (state is AuthAuthenticated) {
+                    if (state is AuthUnauthenticated) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content:
                                 Text(context.tr('this User already exists'))),
                       );
                     }
-                    if (state is AuthUnauthenticated) {
+                    if (state is AuthAuthenticated) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(context.tr('signup_successful'))),

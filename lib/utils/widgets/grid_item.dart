@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/place_model.dart';
-import 'package:tourist_guide/views/home/favourites_page.dart';
-
-import '../helpers/shared_pref.dart';
+import 'package:tourist_guide/services/firebase_service_auth.dart';
+import 'package:tourist_guide/services/firebase_service_place.dart';
 
 class GridItem extends StatefulWidget {
   final Place place;
@@ -18,8 +17,8 @@ class GridItem extends StatefulWidget {
 class _GridItemState extends State<GridItem> {
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>?> userData =
-        SharedPreferencesHelper.getUserData();
+    // Future<Map<String, dynamic>?> userData =
+    //     SharedPreferencesHelper.getUserData();
 
     return SizedBox(
       height: 180,
@@ -74,19 +73,31 @@ class _GridItemState extends State<GridItem> {
                   style: const TextStyle(fontSize: 11),
                 ),
                 trailing: IconButton.filledTonal(
-                  onPressed: () {
+                  onPressed: () async {
+                    var userData =
+                        await FirebaseServiceAuth().fetchCurrentUser();
                     if (userData != null) {
+                      String userId =
+                          userData.id!; // Ensure we have the user ID
+
                       if (widget.isFavourite) {
+                        // REMOVE from favorites in Firestore
+                        await FirebaseServicePlace().removePlaceFromFavorites(
+                            userId, widget.place.name);
                         setState(() {
                           widget.place.addedToFavorite = false;
-                          favList.remove(widget);
+                          widget.isFavourite = false;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Item removed from Favourites')));
+                          const SnackBar(
+                              content: Text('Item removed from Favorites')),
+                        );
                       } else {
+                        // ADD to favorites in Firestore
+                        await FirebaseServicePlace()
+                            .addPlaceToFavorites(userId, widget.place);
                         setState(() {
-                          favList.add(widget);
+                          widget.place.addedToFavorite = true;
                           widget.isFavourite = true;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(

@@ -1,6 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/app_drawer.dart';
+import 'package:tourist_guide/models/place_model.dart';
+import 'package:tourist_guide/services/firebase_service_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tourist_guide/utils/widgets/grid_item.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
@@ -9,9 +13,35 @@ class FavouritesPage extends StatefulWidget {
   State<FavouritesPage> createState() => _FavouritesPageState();
 }
 
-List<Widget> favList = [];
-
 class _FavouritesPageState extends State<FavouritesPage> {
+  List<Place> favPlaces = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _listenToFavouritePlaces();
+  }
+
+  void _listenToFavouritePlaces() async {
+    var userData = await FirebaseServiceAuth().fetchCurrentUser();
+    if (userData != null) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userData.id)
+          .collection('favorites')
+          .snapshots()
+          .listen((snapshot) {
+        List<Place> places = snapshot.docs.map((doc) {
+          return Place.fromJson(doc.data() as Map<String, dynamic>);
+        }).toList();
+
+        setState(() {
+          favPlaces = places;
+        });
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +54,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            favList.isEmpty
+            favPlaces.isEmpty
                 ? Expanded(
                     child: Center(
                       child: Text(
@@ -44,9 +74,13 @@ class _FavouritesPageState extends State<FavouritesPage> {
                         crossAxisSpacing: 4,
                         mainAxisSpacing: 4,
                       ),
-                      itemCount: favList.length,
+                      itemCount: favPlaces.length,
                       itemBuilder: (context, index) {
-                        return favList[index];
+                        return GridItem(
+                          place: favPlaces[index],
+                          // isFavourite: favPlaces[index].addedToFavorite,
+                          isFavourite: true,
+                        );
                       },
                     ),
                   ),

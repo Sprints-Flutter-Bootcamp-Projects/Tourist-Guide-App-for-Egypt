@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
-import 'package:tourist_guide/services/firebase_service.dart';
+import 'package:tourist_guide/services/firebase_service_auth.dart';
 import 'package:tourist_guide/views/users_data/users_list.dart';
 import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 
@@ -73,7 +73,7 @@ class AppDrawer extends StatelessWidget {
             title: Text(tr("log_out")),
             onTap: () {
               context.read<AuthBloc>().add(LogoutRequested());
-              FirebaseService().firebaseLogout();
+              FirebaseServiceAuth().firebaseLogout();
               Navigator.pop(context);
             },
           ),

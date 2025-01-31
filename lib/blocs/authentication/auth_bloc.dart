@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 import 'package:tourist_guide/models/user.dart';
 import 'package:tourist_guide/services/api_service.dart';
-import 'package:tourist_guide/services/firebase_service.dart';
+import 'package:tourist_guide/services/firebase_service_auth.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       FirebaseSignUpRequested event, Emitter<AuthState> emit) async {
     try {
       emit(AuthLoading());
-      final user = await FirebaseService().firebaseSignUp(
+      final user = await FirebaseServiceAuth().firebaseSignUp(
         firstName: event.user.firstName!,
         lastName: event.user.lastName!,
         phone: event.user.phone!,
@@ -88,7 +88,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       FirebaseLoginRequested event, Emitter<AuthState> emit) async {
     try {
       emit(AuthLoading());
-      final user = await FirebaseService().firebaseSignIn(
+      final user = await FirebaseServiceAuth().firebaseSignIn(
         email: event.userEmail,
         password: event.userPassword,
       );

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
-import 'package:tourist_guide/services/firebase_service.dart';
+import 'package:tourist_guide/services/firebase_service_auth.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-    FirebaseService().fetchCurrentUser().then((fetchedUser) {
+    FirebaseServiceAuth().fetchCurrentUser().then((fetchedUser) {
       setState(() {
         user = fetchedUser;
         isLoading = false;

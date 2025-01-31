@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 
-class FirebaseService {
+class FirebaseServiceAuth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> firebaseLogout() async {
@@ -16,19 +16,24 @@ class FirebaseService {
 
   Future<FirebaseUser?> fetchCurrentUser() async {
     final firebaseUser = FirebaseAuth.instance.currentUser;
-    if (firebaseUser != null) {
-      try {
-        final doc = await FirebaseFirestore.instance
-            .collection("users")
-            .doc(firebaseUser.uid)
-            .get();
-        if (doc.exists) {
-          return FirebaseUser.fromFirestore(doc);
-        }
-      } catch (e) {
-        print("Error fetching user data: $e");
-      }
+
+    if (firebaseUser == null) {
+      return null; // No user is signed in
     }
+
+    try {
+      final doc = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(firebaseUser.uid)
+          .get();
+
+      if (doc.exists) {
+        return FirebaseUser.fromFirestore(doc);
+      }
+    } catch (e) {
+      print("Error fetching user data: $e");
+    }
+
     return null;
   }
 
@@ -125,6 +130,17 @@ class FirebaseService {
     } catch (e) {
       print('Error: $e');
       return null;
+    }
+  }
+
+  void addFavoritePlace(String userId, String placeId) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        'favoritePlaces': FieldValue.arrayUnion([placeId])
+      });
+      print("Place added to favorites successfully!");
+    } catch (e) {
+      print("Error adding place to favorites: $e");
     }
   }
 }
