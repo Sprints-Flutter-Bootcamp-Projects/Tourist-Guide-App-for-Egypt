@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
+import 'package:tourist_guide/services/firebase_service.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -15,40 +18,22 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  FirebaseUser? user; // Nullable to handle loading state
+  FirebaseUser? user;
   bool isLoading = true;
 
   String hashedPassword(String password) {
-    return "#" * password.length; // More concise hashing
-  }
-
-  Future<void> getUserData(String uid) async {
-    final db = FirebaseFirestore.instance;
-    try {
-      final doc = await db.collection("users").doc(uid).get();
-      if (doc.exists) {
-        setState(() {
-          user = FirebaseUser.fromFirestore(doc);
-          isLoading = false;
-        });
-      } else {
-        setState(() => isLoading = false);
-      }
-    } catch (e) {
-      print("Error fetching user data: $e");
-      setState(() => isLoading = false);
-    }
+    return "#" * password.length;
   }
 
   @override
   void initState() {
     super.initState();
-    final authState = context.read<AuthBloc>().state;
-    if (authState is AuthAuthenticated) {
-      getUserData(authState.user.id!); // Fetch user data if authenticated
-    } else {
-      setState(() => isLoading = false);
-    }
+    FirebaseService().fetchCurrentUser().then((fetchedUser) {
+      setState(() {
+        user = fetchedUser;
+        isLoading = false;
+      });
+    });
   }
 
   @override
@@ -59,28 +44,34 @@ class _ProfileState extends State<Profile> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : user != null
-              ? Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(user!.avatar ?? ""),
-                            radius: 70,
-                          ),
-                        ),
-                        profileRow(context.tr("name"),
-                            "${user!.firstName} ${user!.lastName}"),
-                        profileRow(context.tr("email"), user!.email ?? ""),
-                        profileRow(context.tr("password"),
-                            hashedPassword(user!.password ?? "")),
-                      ],
-                    ),
-                  ),
-                )
+              ? buildProfileContent()
               : noProfileWidget(context),
+    );
+  }
+
+  Widget buildProfileContent() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            CircleAvatar(
+              backgroundImage: NetworkImage(
+                  user!.avatar ?? "https://reqres.in/img/faces/1-image.jpg"),
+              radius: 90,
+            ),
+            const SizedBox(height: 10),
+            profileRow(
+                context.tr("name"), "${user!.firstName} ${user!.lastName}"),
+            profileRow(context.tr("email"), user!.email ?? ""),
+            profileRow(
+                context.tr("password"), hashedPassword(user!.password ?? "")),
+          ],
+        ),
+      ),
     );
   }
 

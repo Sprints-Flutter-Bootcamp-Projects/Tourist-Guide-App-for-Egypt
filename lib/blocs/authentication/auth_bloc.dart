@@ -12,9 +12,10 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
-    on<LoginRequested>(checkUser);
     on<LogoutRequested>((event, emit) => emit(AuthUnauthenticated()));
-    on<SignupRequested>(signUp);
+
+    // on<LoginRequested>(checkUser);
+    // on<SignupRequested>(signUp);
 
     // on Firebase events
     on<FirebaseSignUpRequested>(firebaseSignUp);

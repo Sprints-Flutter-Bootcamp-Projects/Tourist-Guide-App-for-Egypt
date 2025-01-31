@@ -5,6 +5,33 @@ import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 class FirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<void> firebaseLogout() async {
+    try {
+      await _auth.signOut();
+      print("User logged out successfully.");
+    } catch (e) {
+      print("Error logging out: $e");
+    }
+  }
+
+  Future<FirebaseUser?> fetchCurrentUser() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null) {
+      try {
+        final doc = await FirebaseFirestore.instance
+            .collection("users")
+            .doc(firebaseUser.uid)
+            .get();
+        if (doc.exists) {
+          return FirebaseUser.fromFirestore(doc);
+        }
+      } catch (e) {
+        print("Error fetching user data: $e");
+      }
+    }
+    return null;
+  }
+
   Future<FirebaseUser?> firebaseSignUp({
     required String firstName,
     required String lastName,

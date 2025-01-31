@@ -1,6 +1,7 @@
 // filepath: /d:/Sprints/Module 2/Tourist-Guide-App-for-Egypt/lib/views/government/landmark_page.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/models/governorate_model.dart';
 import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 

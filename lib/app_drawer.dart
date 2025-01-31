@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
+import 'package:tourist_guide/services/firebase_service.dart';
 import 'package:tourist_guide/views/users_data/users_list.dart';
 import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 
@@ -17,9 +18,12 @@ class AppDrawer extends StatelessWidget {
       return NavigationDrawer(
         children: [
           ListTile(
-            title: Text(tr("settings")),
+            title: Text(tr("settings"),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             onTap: () {},
           ),
+          // will probably have to remove this and move it to the profile page
           ListTile(
             title: Text(tr("profile")),
             onTap: () {},
@@ -38,6 +42,7 @@ class AppDrawer extends StatelessWidget {
             title: Text(tr("edit_profile")),
             onTap: () {},
           ),
+          // ------------------------------------------------------------------
           const Divider(),
           ListTile(
             title: Text(tr("theme")),
@@ -68,6 +73,7 @@ class AppDrawer extends StatelessWidget {
             title: Text(tr("log_out")),
             onTap: () {
               context.read<AuthBloc>().add(LogoutRequested());
+              FirebaseService().firebaseLogout();
               Navigator.pop(context);
             },
           ),

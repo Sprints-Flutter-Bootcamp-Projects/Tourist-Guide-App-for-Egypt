@@ -163,6 +163,7 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     if (state is AuthAuthenticated) {
                       // Show success message
+                      print(state);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(context.tr('signup_successful'))),
