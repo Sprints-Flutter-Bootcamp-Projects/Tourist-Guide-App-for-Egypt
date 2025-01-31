@@ -147,7 +147,7 @@ class _SignupPageState extends State<SignupPage> {
                             content:
                                 Text(context.tr('this User already exists'))),
                       );
-                    } //if input credentials doesn't already exist then a new user is created
+                    }
                     if (state is AuthUnauthenticated) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -161,92 +161,33 @@ class _SignupPageState extends State<SignupPage> {
                     if (state is AuthLoading) {
                       return const CircularProgressIndicator();
                     }
+                    if (state is AuthAuthenticated) {
+                      // Show success message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(context.tr('signup_successful'))),
+                      );
+                      Navigator.pop(context);
+                    }
                     return OutlinedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          // User newUser = User(
-                          //     id: DateTime.now()
-                          //         .millisecondsSinceEpoch
-                          //         .toString(), //using the current time in ms as a unique id for new users
-                          //     //which is used also to delete users
-                          //     firstName: firstNameController.text,
-                          //     lastName: lastNameController.text,
-                          //     email: emailController.text,
-                          //     password: passwordController.text,
-                          //     avatar:
-                          //         'https://reqres.in/img/faces/1-image.jpg');
-
                           // create a firebase user object
-                          // FirebaseUser newUser = FirebaseUser(
-                          //     firstName: firstNameController.text,
-                          //     lastName: lastNameController.text,
-                          //     email: emailController.text,
-                          //     password: passwordController.text,
-                          //     phone: phoneController.text);
+                          FirebaseUser newUser = FirebaseUser(
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            phone: phoneController.text,
+                          );
 
-                          // context
-                          //     .read<AuthBloc>()
-                          //     .add(FirebaseSignUpRequested(newUser));
-
-                          // // add user to the firestore database
-                          // var db = FirebaseFirestore.instance;
-                          // await db
-                          //     .collection("users")
-                          //     .withConverter<FirebaseUser>(
-                          //       fromFirestore: (snapshot, _) =>
-                          //           FirebaseUser.fromFirestore(snapshot),
-                          //       toFirestore: (FirebaseUser user, _) =>
-                          //           user.toFirestore(),
-                          //     )
-                          //     .add(newUser);
+                          context
+                              .read<AuthBloc>()
+                              .add(FirebaseSignUpRequested(newUser));
 
                           // if (kDebugMode) {
                           //   print(newUser.toJson());
                           // }
-
-                          // Show success message
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     SnackBar(
-                          //         content: Text(context.tr('signup_successful'))),
-                          //   );
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => const HomePage()));
-                          // }
-
-                          try {
-                            UserCredential userCredential = await FirebaseAuth
-                                .instance
-                                .createUserWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
-
-                            // Retrieve the UID from Firebase Auth
-                            String uid = userCredential.user!.uid;
-
-                            // Create FirebaseUser object
-                            FirebaseUser newUser = FirebaseUser(
-                              id: uid, // Assign UID
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
-                              phone: phoneController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
-
-                            // Save to Firestore using UID as document ID
-                            await FirebaseFirestore.instance
-                                .collection('users')
-                                .doc(uid) // Save under UID
-                                .set(newUser.toFirestore());
-
-                            print(
-                                "User registered and saved to Firestore successfully!");
-                          } catch (e) {
-                            print("Error signing up: $e");
-                          }
                         }
                       },
                       style: OutlinedButton.styleFrom(

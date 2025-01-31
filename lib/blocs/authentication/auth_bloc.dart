@@ -13,11 +13,10 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<LoginRequested>(checkUser);
-
     on<LogoutRequested>((event, emit) => emit(AuthUnauthenticated()));
-
     on<SignupRequested>(signUp);
 
+    // on Firebase events
     on<FirebaseSignUpRequested>(firebaseSignUp);
     on<FirebaseLoginRequested>(firebaseLogin);
   }
@@ -69,6 +68,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(AuthLoading());
       final user = await FirebaseService().firebaseSignUp(
+        firstName: event.user.firstName!,
+        lastName: event.user.lastName!,
+        phone: event.user.phone!,
         email: event.user.email!,
         password: event.user.password!,
       );

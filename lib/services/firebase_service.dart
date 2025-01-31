@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 
@@ -5,21 +6,44 @@ class FirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<FirebaseUser?> firebaseSignUp({
+    required String firstName,
+    required String lastName,
+    required String phone,
     required String email,
     required String password,
   }) async {
     try {
-      final credential = await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Convert Firebase User to your FirebaseUser model
-      final firebaseUser = FirebaseUser(
-        // uid: credential.user?.uid ?? '',
-        email: credential.user?.email,
+      // Retrieve the UID from Firebase Auth
+      String uid = userCredential.user!.uid;
+
+      // Create FirebaseUser object
+      FirebaseUser newUser = FirebaseUser(
+        id: uid, // Assign UID
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        password: password,
       );
 
+      // Save to Firestore using UID as document ID
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid) // Save under UID
+          .set(newUser.toFirestore());
+
+      // Convert Firebase User to your FirebaseUser model
+      final firebaseUser = FirebaseUser(
+        email: userCredential.user?.email,
+      );
+
+      print("User registered and saved to Firestore successfully!");
       return firebaseUser;
     } on FirebaseAuthException catch (e) {
       String errorMessage;
@@ -36,9 +60,9 @@ class FirebaseService {
       print(errorMessage);
       return null;
     } catch (e) {
-      print('Error: $e');
-      return null;
+      print("Error signing up: $e");
     }
+    return null;
   }
 
   Future<FirebaseUser?> firebaseSignIn({
@@ -46,14 +70,14 @@ class FirebaseService {
     required String password,
   }) async {
     try {
-      final credential = await _auth.signInWithEmailAndPassword(
+      final userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       // Convert Firebase User to your FirebaseUser model
       final firebaseUser = FirebaseUser(
-        email: credential.user?.email,
+        email: userCredential.user?.email,
       );
 
       return firebaseUser;
