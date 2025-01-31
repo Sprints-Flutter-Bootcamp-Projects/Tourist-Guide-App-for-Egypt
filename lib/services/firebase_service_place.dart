@@ -4,7 +4,8 @@ import 'package:tourist_guide/models/place_model.dart';
 import 'package:tourist_guide/services/firebase_service_auth.dart';
 
 class FirebaseServicePlace {
-// Add Place to Favorites
+  // functions for working with Places old mode until we switch to firebase for all
+
   Future<void> addPlaceToFavorites(String userId, Place place) async {
     final userFavoritesRef = FirebaseFirestore.instance
         .collection('users')
@@ -16,7 +17,6 @@ class FirebaseServicePlace {
     print("Place added to favorites!");
   }
 
-// Remove Place from Favorites
   Future<void> removePlaceFromFavorites(String userId, String placeId) async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -28,7 +28,6 @@ class FirebaseServicePlace {
     print("Place removed from favorites!");
   }
 
-// Check if a Place is in Favorites
   Future<bool> isPlaceInFavorites(String userId, String placeId) async {
     final doc = await FirebaseFirestore.instance
         .collection('users')
@@ -41,6 +40,8 @@ class FirebaseServicePlace {
   }
 
   // ----------------------------------------------------------------------
+
+  // defined function for when we switch to firebase places model
 
   Future<void> addPlaceToFavorites_fb(
       String userId, FirebasePlace place) async {

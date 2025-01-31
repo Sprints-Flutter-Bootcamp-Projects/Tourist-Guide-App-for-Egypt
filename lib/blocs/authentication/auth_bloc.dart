@@ -24,43 +24,43 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final ApiService apiService = ApiService();
 
-  void checkUser(LoginRequested event, Emitter<AuthState> emit) async {
-    try {
-      emit(AuthLoading());
-      final users = await apiService.getUsers(allowCache: true);
-      //returning the user index if it exists and if not then -1 is returned
-      final index = users.indexWhere(
-        (user) =>
-            event.userEmail == user.email &&
-            event.userPassword == user.password,
-      );
-      if (index != -1) {
-        // emit(AuthAuthenticated(users[index]));
-        // emit(AuthAuthenticated(users));
-      } else {
-        emit(AuthUnauthenticated());
-      }
-    } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-    }
-  }
+  // void checkUser(LoginRequested event, Emitter<AuthState> emit) async {
+  //   try {
+  //     emit(AuthLoading());
+  //     final users = await apiService.getUsers(allowCache: true);
+  //     //returning the user index if it exists and if not then -1 is returned
+  //     final index = users.indexWhere(
+  //       (user) =>
+  //           event.userEmail == user.email &&
+  //           event.userPassword == user.password,
+  //     );
+  //     if (index != -1) {
+  //       // emit(AuthAuthenticated(users[index]));
+  //       // emit(AuthAuthenticated(users));
+  //     } else {
+  //       emit(AuthUnauthenticated());
+  //     }
+  //   } on Exception catch (e) {
+  //     emit(AuthError(e.toString()));
+  //   }
+  // }
 
-  Future<void> signUp(SignupRequested event, Emitter<AuthState> emit) async {
-    try {
-      emit(AuthLoading());
-      final users = await apiService.getUsers(allowCache: true);
-      final index = users.indexWhere((user) => event.user.email == user.email);
-      if (index != -1) {
-        // emit(AuthAuthenticated(users[index]));
-        // emit(AuthAuthenticated());
-      } else {
-        emit(AuthUnauthenticated());
-        await apiService.createUser(event.user);
-      }
-    } on Exception catch (e) {
-      AuthError(e.toString());
-    }
-  }
+  // Future<void> signUp(SignupRequested event, Emitter<AuthState> emit) async {
+  //   try {
+  //     emit(AuthLoading());
+  //     final users = await apiService.getUsers(allowCache: true);
+  //     final index = users.indexWhere((user) => event.user.email == user.email);
+  //     if (index != -1) {
+  //       // emit(AuthAuthenticated(users[index]));
+  //       // emit(AuthAuthenticated());
+  //     } else {
+  //       emit(AuthUnauthenticated());
+  //       await apiService.createUser(event.user);
+  //     }
+  //   } on Exception catch (e) {
+  //     AuthError(e.toString());
+  //   }
+  // }
 
   // Firebase actions
 

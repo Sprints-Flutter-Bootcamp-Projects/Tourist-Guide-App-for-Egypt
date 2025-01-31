@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebasePlace {
-  final String? id; // Document ID from Firestore
+  final String? id;
   final String name;
   final String location;
   final String image;
@@ -32,7 +32,7 @@ class FirebasePlace {
   // Convert FirebasePlace to a Firestore-compatible Map
   Map<String, dynamic> toFirestore() {
     return {
-      if (id != null) "id": id, // Ensure document ID is stored
+      if (id != null) "id": id,
       "name": name,
       "location": location,
       "image": image,
