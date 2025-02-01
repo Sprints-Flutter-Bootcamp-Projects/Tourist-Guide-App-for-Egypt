@@ -32,7 +32,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
           .snapshots()
           .listen((snapshot) {
         List<Place> places = snapshot.docs.map((doc) {
-          return Place.fromJson(doc.data() as Map<String, dynamic>);
+          return Place.fromJson(doc.data());
         }).toList();
 
         setState(() {

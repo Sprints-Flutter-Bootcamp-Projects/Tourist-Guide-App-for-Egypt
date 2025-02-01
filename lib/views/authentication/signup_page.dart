@@ -1,17 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
-import 'package:tourist_guide/models/user.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/utils/widgets/my_textformfield.dart';
-import 'package:tourist_guide/views/home/home_page.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
