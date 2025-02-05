@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 import 'package:tourist_guide/services/firebase_service_auth.dart';
+import 'package:tourist_guide/utils/widgets/profile_pic.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 
 class Profile extends StatefulWidget {
@@ -53,11 +54,12 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                  user!.avatar ?? "https://reqres.in/img/faces/1-image.jpg"),
-              radius: 90,
-            ),
+            ProfilePic(),
+            // CircleAvatar(
+            //   backgroundImage: NetworkImage(
+            //       user!.avatar ?? "https://reqres.in/img/faces/1-image.jpg"),
+            //   radius: 90,
+            // ),
             const SizedBox(height: 10),
             profileRow(
                 context.tr("name"), "${user!.firstName} ${user!.lastName}"),

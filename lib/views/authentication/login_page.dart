@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
+import 'package:tourist_guide/utils/widgets/profile_pic.dart';
 import 'package:tourist_guide/views/authentication/signup_page.dart';
 import 'package:tourist_guide/utils/widgets/my_textformfield.dart';
 
