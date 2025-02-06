@@ -5,6 +5,7 @@ import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 import 'package:tourist_guide/services/firebase_service_auth.dart';
 import 'package:tourist_guide/utils/widgets/profile_pic.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
+import 'package:tourist_guide/views/users_data/management/edit_user.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -35,7 +36,12 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.tr("profile"))),
+      appBar: AppBar(
+        title: Text(context.tr("profile")),
+        actions: [
+          IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+        ],
+      ),
       drawer: const AppDrawer(),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -55,11 +61,6 @@ class _ProfileState extends State<Profile> {
           children: [
             const SizedBox(height: 20),
             ProfilePic(),
-            // CircleAvatar(
-            //   backgroundImage: NetworkImage(
-            //       user!.avatar ?? "https://reqres.in/img/faces/1-image.jpg"),
-            //   radius: 90,
-            // ),
             const SizedBox(height: 10),
             profileRow(
                 context.tr("name"), "${user!.firstName} ${user!.lastName}"),
