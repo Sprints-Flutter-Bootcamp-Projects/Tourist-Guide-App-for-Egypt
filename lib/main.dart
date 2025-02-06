@@ -6,6 +6,7 @@ import 'package:tourist_guide/blocs/places/places_bloc.dart';
 import 'package:tourist_guide/blocs/profile/profile_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
 import 'package:tourist_guide/controllers/places_controller.dart';
+import 'package:tourist_guide/google_maps_test.dart';
 import 'package:tourist_guide/landing_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -58,7 +59,8 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: const MyNavigationBar(),
+          // home: const MyNavigationBar(),
+          home: GoogleMapWidget(latitude: 29.9773, longitude: 31.1325),
         );
       }),
     );
