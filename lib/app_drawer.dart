@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourist_guide/blocs/authentication/auth_bloc.dart';
 import 'package:tourist_guide/blocs/theme/theme_bloc.dart';
 import 'package:tourist_guide/services/firebase_service_auth.dart';
+import 'package:tourist_guide/views/users_data/management/edit_user.dart';
 import 'package:tourist_guide/views/users_data/users_list.dart';
 import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
 
@@ -37,11 +38,7 @@ class AppDrawer extends StatelessWidget {
                   builder: (context) => const UserListPage(),
                 )),
           ),
-          ListTile(
-            leading: const Icon(Icons.edit),
-            title: Text(tr("edit_profile")),
-            onTap: () {},
-          ),
+
           // ------------------------------------------------------------------
           const Divider(),
           ListTile(
