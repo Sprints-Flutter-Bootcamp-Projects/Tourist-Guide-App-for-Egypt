@@ -59,8 +59,8 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          // home: const MyNavigationBar(),
-          home: GoogleMapWidget(latitude: 29.9773, longitude: 31.1325),
+          home: const MyNavigationBar(),
+          // home: GoogleMapWidget(latitude: 29.9773, longitude: 31.1325),
         );
       }),
     );
