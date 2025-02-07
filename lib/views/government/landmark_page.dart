@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/models/governorate_model.dart';
 import 'package:tourist_guide/utils/widgets/lang_dialog.dart';
+import 'package:tourist_guide/views/government/landmark_map.dart';
 
 class LandmarkPage extends StatefulWidget {
   final Governorate governorate;
@@ -118,6 +119,30 @@ class _LandmarkPageState extends State<LandmarkPage> {
                             Image.network(landmark.image),
                             ListTile(
                               subtitle: Text(tr(landmark.description)),
+                            ),
+                            const Divider(),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LandmarkMap(
+                                          locationName: landmark.name,
+                                          latitude: landmark.lat!,
+                                          longitude: landmark.lng!)),
+                                );
+                              },
+                              child: const ListTile(
+                                iconColor: Colors.redAccent,
+                                leading: Icon(Icons.directions_outlined),
+                                title: Text(
+                                  "Get Location",
+                                  style: TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
