@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/app_drawer.dart';
 import 'package:tourist_guide/models/firebase_models/firebase_user.dart';
 import 'package:tourist_guide/services/firebase_service_auth.dart';
+import 'package:tourist_guide/services/local_auth_api.dart';
 import 'package:tourist_guide/utils/widgets/profile_pic.dart';
 import 'package:tourist_guide/views/authentication/login_page.dart';
 import 'package:tourist_guide/views/users_data/management/edit_user.dart';
@@ -17,6 +18,12 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   FirebaseUser? user;
   bool isLoading = true;
+  bool isBioAuthed = false;
+
+  bioAuthenticate() async {
+    isBioAuthed = await LocalAuthApi.authenticate();
+    setState(() {});
+  }
 
   String hashedPassword(String password) {
     return "#" * password.length;
@@ -30,6 +37,9 @@ class _ProfileState extends State<Profile> {
         user = fetchedUser;
         isLoading = false;
       });
+      if (user != null) {
+        bioAuthenticate();
+      }
     });
   }
 
@@ -46,7 +56,12 @@ class _ProfileState extends State<Profile> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : user != null
-              ? buildProfileContent()
+              ? isBioAuthed
+                  ? buildProfileContent()
+                  : const Center(
+                      child:
+                          Text('Scan Finger Print to View your Profile Data'),
+                    )
               : noProfileWidget(context),
     );
   }
