@@ -1,20 +1,85 @@
 Tourist Guide App for Egypt
 ===========================
 
+### This App is part of the Flutter Bootcamp Program from Sprints, where we as a team work together to apply what we learned each week on the app and updating it
+
 <br>
 <br>
 <br>
 
 
-# !! Latest Update !!
-### Added Firebase Authentication for user sign in/up with the logout functionality working and saving the user data in firestore database along with the favorite places he/she liked
+# New Features Added!
 
-<img src="r-signin.png" alt="Light Theme" width="600">
-<img src="r-users.png" alt="Light Theme" width="600">
+### Added Profile Picture
+Now the user can added his profile picture either from a gallery or snap a fast one from the camera
+
+
+
+<table border="1">
+  <tr>
+    <th>Profile Page</th>
+    <th>Profile Photo Options</th>
+    <th>Profile Photo Added</th>
+  </tr>
+  <tr>
+    <td><img src="r-profile-ss/00.jpeg" alt="Profile Page" height="400"></td>
+    <td><img src="r-profile-ss/01.jpeg" alt="Profile Photo Options" height="400"></td>
+    <td><img src="r-profile-ss/02.jpeg" alt="Profile Photo Added" height="400"></td>
+  </tr>
+
+  <tr>
+    <th>Profile Photo Removed</th>
+    <th>Profile New Photo Added</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><img src="r-profile-ss/03.jpeg" alt="Profile Photo Removed" height="400"></td>
+    <td><img src="r-profile-ss/04.jpeg" alt="Profile New Photo Added" height="400"></td>
+    <td></td>
+  </tr>
+</table>
+
+<br>
+
+### Landmarks cards now include their location
+so the user know specifically where they are located and with a press of button the user can start navigating to the landmark location from his position
+
+<table border="1">
+  <tr>
+    <th>Governorates Page</th>
+    <th>Cairo Page with Landmark Cards</th>
+    <th>Landmark Page: The Egyptian Museum</th>
+  </tr>
+  <tr>
+    <td><img src="r-landmark-map-ss/05.jpeg" alt="Governorates Page" height="400"></td>
+    <td><img src="r-landmark-map-ss/06.jpeg" alt="Cairo Page with Landmark Cards" height="400"></td>
+    <td><img src="r-landmark-map-ss/07.jpeg" alt="Landmark Page Displaying The Egyptian Museum" height="400"></td>
+  </tr>
+
+  <tr>
+    <th>Landmark Location Shown</th>
+    <th>Landmark Navigation Started</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><img src="r-landmark-map-ss/08.jpeg" alt="Landmark Location Shown" height="400"></td>
+    <td><img src="r-landmark-map-ss/09.jpeg" alt="Landmark Navigation Started" height="400"></td>
+    <td></td>
+  </tr>
+</table>
+
+
+
+
+### Added Firebase Authentication 
+for the user to sign in/up with the logout functionality working and saving the user data in firestore database along with the favorite places he/she liked
+
+<img src="r-signin.png"     alt="Light Theme" width="600">
+<img src="r-users.png"      alt="Light Theme" width="600">
 <br>
 <img src="r-home-page.jpeg" alt="Light Theme" height="400">
-<img src="r-fav-data.png" alt="Light Theme" width="600">
-<img src="r-fav-page.jpeg" alt="Light Theme" height="400">
+<img src="r-fav-data.png"   alt="Light Theme" width="600">
+<img src="r-fav-page.jpeg"  alt="Light Theme" height="400">
 
 
 <br>
