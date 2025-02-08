@@ -74,12 +74,35 @@ so the user know specifically where they are located and with a press of button 
 ### Added Firebase Authentication 
 for the user to sign in/up with the logout functionality working and saving the user data in firestore database along with the favorite places he/she liked
 
-<img src="r-signin.png"     alt="Light Theme" width="600">
-<img src="r-users.png"      alt="Light Theme" width="600">
-<br>
-<img src="r-home-page.jpeg" alt="Light Theme" height="400">
-<img src="r-fav-data.png"   alt="Light Theme" width="600">
-<img src="r-fav-page.jpeg"  alt="Light Theme" height="400">
+<table border="1">
+  <tr>
+    <th>Sign-in Page</th>
+
+  </tr>
+  <tr>
+    <td><img src="r-signin.png" alt="Sign-in Page" width="600"></td>
+  </tr>
+
+  <tr>
+    <th>Users Page</th>
+    <th>Favorites Page</th>
+  </tr>
+  <tr>
+    <td><img src="r-users.png" alt="Users Page" width="600"></td>
+    <td><img src="r-fav-data.png" alt="Favorites Data" width="600"></td>
+  </tr>
+
+  <tr>
+    <th>Home Page</th>
+    <th>Favorites Data</th>
+    
+  </tr>
+  <tr>
+    <td><img src="r-home-page.jpeg" alt="Home Page" height="400"></td>
+    <td><img src="r-fav-page.jpeg" alt="Favorites Page" height="400"></td>
+  </tr>
+</table>
+
 
 
 <br>
