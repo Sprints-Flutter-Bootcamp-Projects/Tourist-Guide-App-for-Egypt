@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tourist_guide/controllers/governorate_controller.dart';
 import 'package:tourist_guide/controllers/places_controller.dart';
@@ -6,7 +5,7 @@ import 'package:tourist_guide/models/governorate_model.dart';
 import 'package:tourist_guide/models/place_model.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  TestWidgetsFlutterBinding.ensureInitialized();
   controllersTest();
 }
 

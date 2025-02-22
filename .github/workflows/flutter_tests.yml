@@ -1,0 +1,35 @@
+name: Flutter Tests
+
+on:
+  push:
+    branches:
+      - testing
+  pull_request:
+    branches:
+      - testing
+
+jobs:
+  test:
+    runs-on: ubuntu-latest 
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.3' 
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Flutter tests
+        run: flutter test
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+            name: test-results
+            path: test-results/
