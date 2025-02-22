@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tourist_guide/utils/widgets/governorate_list_tile.dart';
 
-
 void main() {
-  testWidgets('GovernorateListTile displays correct name and icons', (WidgetTester tester) async {
+  governorateListTileTest();
+}
+
+void governorateListTileTest() {
+  testWidgets('GovernorateListTile displays correct name and icons',
+      (WidgetTester tester) async {
     const testGovernorateName = "Cairo";
 
     await tester.pumpWidget(
@@ -23,7 +27,8 @@ void main() {
     expect(find.byIcon(Icons.chevron_right), findsOneWidget);
   });
 
-  testWidgets('GovernorateListTile calls onTap when tapped', (WidgetTester tester) async {
+  testWidgets('GovernorateListTile calls onTap when tapped',
+      (WidgetTester tester) async {
     bool tapped = false;
 
     await tester.pumpWidget(
